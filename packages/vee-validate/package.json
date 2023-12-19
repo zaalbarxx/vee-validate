@@ -1,6 +1,6 @@
 {
   "name": "@zaalbarxx/vee-validate",
-  "version": "4.11.9-beta4",
+  "version": "4.11.9-beta5",
   "description": "Form Validation for Vue.js",
   "author": "Abdelrahman Awad <logaretm1@gmail.com>",
   "license": "MIT",
@@ -22,6 +22,7 @@
     "validator",
     "inputs",
     "form"
+
   ],
   "files": [
     "dist/*.js",
