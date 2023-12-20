@@ -4,15 +4,9 @@
   "commit": false,
   "fixed": [
     [
-      "vee-validate",
-      "@vee-validate/rules",
-      "@vee-validate/i18n",
-      "@vee-validate/rules",
-      "@vee-validate/zod",
-      "@vee-validate/yup",
-      "@vee-validate/valibot",
-      "@vee-validate/nuxt",
-      "@vee-validate/joi"
+      "@zaalbarxx/vee-validate",
+      "@zaalbarxx/vee-validate-rules",
+      "@zaalbarxx/vee-validate-i18n"
     ]
   ],
   "linked": [],

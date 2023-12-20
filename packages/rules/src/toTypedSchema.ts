@@ -1,5 +1,5 @@
 import { keysOf } from '../../vee-validate/src/utils';
-import { TypedSchema, RawFormSchema, validateObject, TypedSchemaError, validate } from 'vee-validate';
+import { TypedSchema, RawFormSchema, validateObject, TypedSchemaError, validate } from '@zaalbarxx/vee-validate';
 import { Optional, isObject } from '../../shared';
 
 export function toTypedSchema<TOutput = any, TInput extends Optional<TOutput> = Optional<TOutput>>(
