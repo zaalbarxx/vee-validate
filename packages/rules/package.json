@@ -28,6 +28,6 @@
     "dist/*.d.ts"
   ],
   "dependencies": {
-    "vee-validate": "4.12.6"
+    "@zaalbarxx/vee-validate": "4.12.6"
   }
 }
