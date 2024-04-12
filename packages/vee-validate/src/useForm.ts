@@ -436,6 +436,23 @@ export function useForm<
         results.values = formResult.values;
       }
 
+      keysOf(results.results).forEach(path => {
+        const pathState = findPathState(path);
+        if (!pathState) {
+          return;
+        }
+
+        if (mode === 'silent') {
+          return;
+        }
+
+        if (mode === 'validated-only' && !pathState.validated) {
+          return;
+        }
+
+        setFieldError(pathState, results.results[path]?.errors);
+      });
+
       return results;
     },
   );
@@ -559,7 +576,9 @@ export function useForm<
   handleSubmit.withControlled = makeSubmissionFactory(true);
 
   function removePathState<TPath extends Path<TValues>>(path: TPath, id: number) {
-    const idx = pathStates.value.findIndex(s => s.path === path);
+    const idx = pathStates.value.findIndex(s => {
+      return s.path === path && (Array.isArray(s.id) ? s.id.includes(id) : s.id === id);
+    });
     const pathState = pathStates.value[idx];
     if (idx === -1 || !pathState) {
       return;
@@ -1095,20 +1114,20 @@ export function useForm<
   ) {
     const [model, props] = defineField(path, config);
 
-    function onBlur(e: Event) {
-      props.value.onBlur(e);
+    function onBlur() {
+      props.value.onBlur();
     }
 
     function onInput(e: Event) {
       const value = normalizeEventValue(e) as PathValue<TValues, TPath>;
       setFieldValue(toValue(path), value, false);
-      props.value.onInput(e);
+      props.value.onInput();
     }
 
     function onChange(e: Event) {
       const value = normalizeEventValue(e) as PathValue<TValues, TPath>;
       setFieldValue(toValue(path), value, false);
-      props.value.onChange(e);
+      props.value.onChange();
     }
 
     return computed(() => {

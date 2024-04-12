@@ -2,7 +2,7 @@ export { validate, validateObjectSchema as validateObject } from './validate';
 export { defineRule } from './defineRule';
 export { configure } from './config';
 export { normalizeRules, isNotNestedPath, cleanupNonNestedPath } from './utils';
-export { Field } from './Field';
+export { Field, FieldBindingObject, ComponentFieldBindingObject } from './Field';
 export { FieldGroup } from './FieldGroup';
 export { Form } from './Form';
 export { FieldArray } from './FieldArray';

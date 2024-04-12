@@ -1,5 +1,24 @@
 # Change Log
 
+## 4.12.6
+
+### Patch Changes
+
+- 07d01fd: fix: re-apply errors to avoid race conditions
+
+## 4.12.5
+
+### Patch Changes
+
+- d779980: fix: make sure removePathState removes the correct path state
+- 9eda544: "fix: remove event arg from define field handlers for component compat closes #4637"
+
+## 4.12.4
+
+### Patch Changes
+
+- 2a09a58: "fix: check if both source and target objects are POJOs"
+
 ## 4.12.3
 
 ### Patch Changes

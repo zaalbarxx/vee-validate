@@ -1,5 +1,28 @@
 # @vee-validate/valibot
 
+## 4.12.6
+
+### Patch Changes
+
+- Updated dependencies [07d01fd]
+  - vee-validate@4.12.6
+
+## 4.12.5
+
+### Patch Changes
+
+- 998ca37: "chore: use non-deprecated output property"
+- Updated dependencies [d779980]
+- Updated dependencies [9eda544]
+  - vee-validate@4.12.5
+
+## 4.12.4
+
+### Patch Changes
+
+- Updated dependencies [2a09a58]
+  - vee-validate@4.12.4
+
 ## 4.12.3
 
 ### Patch Changes

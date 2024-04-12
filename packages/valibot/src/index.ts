@@ -7,7 +7,7 @@ import {
   BaseSchemaAsync,
   safeParseAsync,
   safeParse,
-  Issue,
+  SchemaIssue,
   getDefault,
   optional,
   ArraySchema,
@@ -26,7 +26,7 @@ export function toTypedSchema<
       const result = await safeParseAsync(valibotSchema, value);
       if (result.success) {
         return {
-          value: result.data,
+          value: result.output,
           errors: [],
         };
       }
@@ -45,7 +45,7 @@ export function toTypedSchema<
 
       const result = safeParse(valibotSchema, values);
       if (result.success) {
-        return result.data;
+        return result.output;
       }
 
       const defaults = getDefault(optional(valibotSchema));
@@ -81,7 +81,7 @@ export function toTypedSchema<
   return schema;
 }
 
-function processIssues(issues: Issue[], errors: Record<string, TypedSchemaError>): void {
+function processIssues(issues: SchemaIssue[], errors: Record<string, TypedSchemaError>): void {
   issues.forEach(issue => {
     const path = normalizeFormPath((issue.path || []).map(p => p.key).join('.'));
     if (issue.issues?.length) {
