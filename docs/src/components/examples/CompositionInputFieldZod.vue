@@ -5,7 +5,7 @@
 
 <script setup>
 import { useField } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/zod';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 import { z } from 'zod';
 
 const { value, errorMessage } = useField('email', toTypedSchema(z.string().email().min(1, 'Required')));

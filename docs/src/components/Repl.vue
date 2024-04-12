@@ -29,11 +29,11 @@ const store = new ReplStore({
 store.setImportMap({
   imports: {
     'vee-validate': 'https://unpkg.com/vee-validate@latest/dist/vee-validate.esm.js',
-    '@vee-validate/zod': 'https://unpkg.com/@vee-validate/zod@latest/dist/vee-validate-zod.esm.js',
-    '@vee-validate/yup': 'https://unpkg.com/@vee-validate/yup@latest/dist/vee-validate-yup.esm.js',
-    '@vee-validate/valibot': 'https://unpkg.com/@vee-validate/valibot@latest/dist/vee-validate-valibot.esm.js',
-    '@vee-validate/i18n': 'https://unpkg.com/@vee-validate/i18n@latest/dist/vee-validate-i18n.esm.js',
-    '@vee-validate/rules': 'https://unpkg.com/@vee-validate/rules@latest/dist/vee-validate-rules.esm.js',
+    '@zaalbarxx/vee-validate-zod': 'https://unpkg.com/@zaalbarxx/vee-validate-zod@latest/dist/vee-validate-zod.esm.js',
+    '@zaalbarxx/vee-validate-yup': 'https://unpkg.com/@zaalbarxx/vee-validate-yup@latest/dist/vee-validate-yup.esm.js',
+    '@@zaalbarxx/vee-validate-valibot': 'https://unpkg.com/@@zaalbarxx/vee-validate-valibot@latest/dist/vee-validate-valibot.esm.js',
+    '@zaalbarxx/vee-validate-i18n': 'https://unpkg.com/@zaalbarxx/vee-validate-i18n@latest/dist/vee-validate-i18n.esm.js',
+    '@zaalbarxx/vee-validate-rules': 'https://unpkg.com/@zaalbarxx/vee-validate-rules@latest/dist/vee-validate-rules.esm.js',
     'property-expr': 'https://esm-repo.netlify.app/property-expr.esm.js',
     'tiny-case': 'https://esm-repo.netlify.app/tiny-case.esm.js',
     toposort: 'https://esm-repo.netlify.app/topsort.esm.js',

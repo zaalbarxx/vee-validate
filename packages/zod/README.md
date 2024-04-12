@@ -1,4 +1,4 @@
-# @vee-validate/zod
+# @zaalbarxx/vee-validate-zod
 
 <p align="center">
   <a href="https://vee-validate.logaretm.com/v4/integrations/zod-schema-validation/" target="_blank">
@@ -26,15 +26,15 @@ In their own words it is a:
 
 > TypeScript-first schema validation with static type inference
 
-You can use zod as a typed schema with the `@vee-validate/zod` package:
+You can use zod as a typed schema with the `@zaalbarxx/vee-validate-zod` package:
 
 ```sh
 # npm
-npm install @vee-validate/zod
+npm install @zaalbarxx/vee-validate-zod
 # yarn
-yarn add @vee-validate/zod
+yarn add @zaalbarxx/vee-validate-zod
 # pnpm
-pnpm add @vee-validate/zod
+pnpm add @zaalbarxx/vee-validate-zod
 ```
 
 The `@vee-valdiate/zod` package exposes a `toTypedSchema` function that accepts any zod schema. Which then you can pass along to `validationSchema` option on `useForm`.
@@ -44,7 +44,7 @@ This makes the form values and submitted values typed automatically and caters f
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'zod';
-import { toTypedSchema } from '@vee-validate/zod';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -76,7 +76,7 @@ You can also define default values on your zod schema directly and it will be pi
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'zod';
-import { toTypedSchema } from '@vee-validate/zod';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -97,7 +97,7 @@ You can also define preprocessors to cast your fields before submission:
 ```ts
 import { useForm } from 'vee-validate';
 import { object, number, preprocess } from 'zod';
-import { toTypedSchema } from '@vee-validate/zod';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(

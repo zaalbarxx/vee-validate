@@ -1,4 +1,4 @@
-# @vee-validate/nuxt
+# @zaalbarxx/vee-validate-nuxt
 
 <p align="center">
   <a href="https://vee-validate.logaretm.com/v4/guide/global-validators" target="_blank">
@@ -32,13 +32,13 @@ In your nuxt project install the vee-validate nuxt module:
 
 ```sh
 # npm
-npm i @vee-validate/nuxt
+npm i @zaalbarxx/vee-validate-nuxt
 
 # pnpm
-pnpm add @vee-validate/nuxt
+pnpm add @zaalbarxx/vee-validate-nuxt
 
 # yarn
-yarn add @vee-validate/nuxt
+yarn add @zaalbarxx/vee-validate-nuxt
 ```
 
 Then add the module to your `modules` config in `nuxt.config.ts`:
@@ -48,7 +48,7 @@ export default defineNuxtConfig({
   // ...
   modules: [
     //...
-    '@vee-validate/nuxt',
+    '@zaalbarxx/vee-validate-nuxt',
   ],
 });
 ```
@@ -59,7 +59,7 @@ No types are exposed by default to avoid having conflicts with other libraries, 
 
 ## Configuration
 
-You can configure a few aspects of the `@vee-validate/nuxt` module. Here is the config interface:
+You can configure a few aspects of the `@zaalbarxx/vee-validate-nuxt` module. Here is the config interface:
 
 ```ts
 export default defineNuxtConfig({
@@ -67,7 +67,7 @@ export default defineNuxtConfig({
   modules: [
     //...
     [
-      '@vee-validate/nuxt',
+      '@zaalbarxx/vee-validate-nuxt',
       {
         // disable or enable auto imports
         autoImports: true,
@@ -91,7 +91,7 @@ export default defineNuxtConfig({
   // ...
   modules: [
     //...
-    '@vee-validate/nuxt',
+    '@zaalbarxx/vee-validate-nuxt',
   ],
   veeValidate: {
     // disable or enable auto imports

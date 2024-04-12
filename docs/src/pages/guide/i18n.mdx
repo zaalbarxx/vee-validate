@@ -11,7 +11,7 @@ import DocTip from '@/components/DocTip.vue';
 
 # Localization (i18n)
 
-This guide only addresses generating error messages for [globally defined validators](/guide/global-validators) using vee-validate's own `@vee-validate/i18n` plugin.
+This guide only addresses generating error messages for [globally defined validators](/guide/global-validators) using vee-validate's own `@zaalbarxx/vee-validate-i18n` plugin.
 
 If you are using vee-validate with yup, then you should check out [yup's localization guide](https://github.com/jquense/yup#localization-and-i18n). If you are using another library for data validation, check their i18n capabilities.
 
@@ -60,27 +60,27 @@ If you want to display different field names in your error messages, the `<Field
 
 The generated message will use `nice name` instead of the badly formatted one.
 
-## Using @vee-validate/i18n
+## Using @zaalbarxx/vee-validate-i18n
 
 ### Overview
 
-The `@vee-validate/i18n` contains a simple message generator function that you can use to generate localized messages from JSON objects:
+The `@zaalbarxx/vee-validate-i18n` contains a simple message generator function that you can use to generate localized messages from JSON objects:
 
-First, you need to install the `@vee-validate/i18n` package:
+First, you need to install the `@zaalbarxx/vee-validate-i18n` package:
 
 ```sh
-yarn add @vee-validate/i18n
+yarn add @zaalbarxx/vee-validate-i18n
 
 # or with npm
-npm install @vee-validate/i18n
+npm install @zaalbarxx/vee-validate-i18n
 ```
 
-\import the `localize()` function from `@vee-validate/i18n` which returns a message generator function:
+\import the `localize()` function from `@zaalbarxx/vee-validate-i18n` which returns a message generator function:
 
 ```js
 import { defineRule, configure } from 'vee-validate';
-import { required } from '@vee-validate/rules';
-import { localize } from '@vee-validate/i18n';
+import { required } from '@zaalbarxx/vee-validate-rules';
+import { localize } from '@zaalbarxx/vee-validate-i18n';
 
 // Define the rule globally
 defineRule('required', required);
@@ -99,8 +99,8 @@ If you have multiple locales in your application, you can add them like this:
 
 ```js
 import { defineRule, configure } from 'vee-validate';
-import { required } from '@vee-validate/rules';
-import { localize } from '@vee-validate/i18n';
+import { required } from '@zaalbarxx/vee-validate-rules';
+import { localize } from '@zaalbarxx/vee-validate-i18n';
 
 // Define the rule globally
 defineRule('required', required);
@@ -121,23 +121,23 @@ configure({
 });
 ```
 
-You can change the locale using `setLocale` function exported by the `@vee-validate/i18n` anywhere in your application:
+You can change the locale using `setLocale` function exported by the `@zaalbarxx/vee-validate-i18n` anywhere in your application:
 
 ```js
-import { setLocale } from '@vee-validate/i18n';
+import { setLocale } from '@zaalbarxx/vee-validate-i18n';
 
 setLocale('ar');
 ```
 
-To save you a lot of time translating `@vee-validate/rules` messages to your language, the awesome community around vee-validate already contributed over 40+ languages that you can use directly in your application and get started quickly. The localized files include localized messages for all the [global rules provided by @vee-validate/rules package](/guide/global-validators#available-rules).
+To save you a lot of time translating `@zaalbarxx/vee-validate-rules` messages to your language, the awesome community around vee-validate already contributed over 40+ languages that you can use directly in your application and get started quickly. The localized files include localized messages for all the [global rules provided by @zaalbarxx/vee-validate-rules package](/guide/global-validators#available-rules).
 
-You can import the needed locale from the `@vee-validate/i18n/dist/locale/{localeCode}.json` and they can be passed directly to the localize function. This snippet adds the English and Arabic localized messages for all the rules of `@vee-validate/rules` package into the message generator function:
+You can import the needed locale from the `@zaalbarxx/vee-validate-i18n/dist/locale/{localeCode}.json` and they can be passed directly to the localize function. This snippet adds the English and Arabic localized messages for all the rules of `@zaalbarxx/vee-validate-rules` package into the message generator function:
 
 ```js
 import { configure } from 'vee-validate';
-import { localize } from '@vee-validate/i18n';
-import en from '@vee-validate/i18n/dist/locale/en.json';
-import ar from '@vee-validate/i18n/dist/locale/ar.json';
+import { localize } from '@zaalbarxx/vee-validate-i18n';
+import en from '@zaalbarxx/vee-validate-i18n/dist/locale/en.json';
+import ar from '@zaalbarxx/vee-validate-i18n/dist/locale/ar.json';
 
 configure({
   generateMessage: localize({
@@ -149,11 +149,11 @@ configure({
 
 ### Localizing Field Names
 
-To localize the field name with the `@vee-validate/i18n` package, you can add a `names` property to your dictionaries containing the translated names of the fields.
+To localize the field name with the `@zaalbarxx/vee-validate-i18n` package, you can add a `names` property to your dictionaries containing the translated names of the fields.
 
 ```js
 import { configure } from 'vee-validate';
-import { localize } from '@vee-validate/i18n';
+import { localize } from '@zaalbarxx/vee-validate-i18n';
 
 configure({
   generateMessage: localize({
@@ -180,7 +180,7 @@ This is such an example:
 You may want to override specific rule messages for specific fields, you can do this by calling `localize` with the specific messages object:
 
 ```js
-import { localize } from '@vee-validate/i18n';
+import { localize } from '@zaalbarxx/vee-validate-i18n';
 
 localize('en', {
   fields: {
@@ -206,12 +206,12 @@ You can call `localize` anywhere in your component initialization, ideally befor
 
 ### Placeholder Interpolation
 
-Your messages can be more complex than `required`, for example a `between` rule would need access to the params values to be able to produce a meaningful error message, the `@vee-validate/i18n` plugin comes with interpolation support for various placeholders, consider this example:
+Your messages can be more complex than `required`, for example a `between` rule would need access to the params values to be able to produce a meaningful error message, the `@zaalbarxx/vee-validate-i18n` plugin comes with interpolation support for various placeholders, consider this example:
 
 ```js
 import { defineRule, configure } from 'vee-validate';
-import { between } from '@vee-validate/rules';
-import { localize } from '@vee-validate/i18n';
+import { between } from '@zaalbarxx/vee-validate-rules';
+import { localize } from '@zaalbarxx/vee-validate-i18n';
 
 // Define the rule globally
 defineRule('between', between);
@@ -236,12 +236,12 @@ Here is an example that show cases interpolation for different cases:
 
 ### Loading Locale From CDN
 
-If you are using Vue.js over CDN, you can still load the locale files without having to copy them to your code, the `@vee-validate/i18n` library exposes a `loadLocaleFromURL` function that accepts a URL to a locale file.
+If you are using Vue.js over CDN, you can still load the locale files without having to copy them to your code, the `@zaalbarxx/vee-validate-i18n` library exposes a `loadLocaleFromURL` function that accepts a URL to a locale file.
 
 ```html
 <script src="path/to/vee-validate.js"></script>
-<script src="path/to/@vee-validate/rules.js"></script>
-<script src="path/to/@vee-validate/i18n.js"></script>
+<script src="path/to/@zaalbarxx/vee-validate-rules.js"></script>
+<script src="path/to/@zaalbarxx/vee-validate-i18n.js"></script>
 
 <script>
   // Install all rules
@@ -250,7 +250,7 @@ If you are using Vue.js over CDN, you can still load the locale files without ha
   });
 
   // Downloads and merges the locale from URL
-  VeeValidateI18n.loadLocaleFromURL('https://unpkg.com/@vee-validate/i18n@4.0.2/dist/locale/ar.json');
+  VeeValidateI18n.loadLocaleFromURL('https://unpkg.com/@zaalbarxx/vee-validate-i18n@4.0.2/dist/locale/ar.json');
 
   // Activate the locale
   VeeValidate.configure({

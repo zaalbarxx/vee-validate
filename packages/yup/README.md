@@ -1,4 +1,4 @@
-# @vee-validate/yup
+# @zaalbarxx/vee-validate-yup
 
 <p align="center">
   <a href="https://vee-validate.logaretm.com/v4/guide/composition-api/typed-schema/" target="_blank">
@@ -17,15 +17,15 @@
 
 ## Getting started
 
-You can use [yup](https://github.com/jquense/yup) as a typed schema with the `@vee-validate/yup` package:
+You can use [yup](https://github.com/jquense/yup) as a typed schema with the `@zaalbarxx/vee-validate-yup` package:
 
 ```sh
 # npm
-npm install @vee-validate/yup
+npm install @zaalbarxx/vee-validate-yup
 # yarn
-yarn add @vee-validate/yup
+yarn add @zaalbarxx/vee-validate-yup
 # pnpm
-pnpm add @vee-validate/yup
+pnpm add @zaalbarxx/vee-validate-yup
 ```
 
 The `@vee-valdiate/yup` package exposes a `toTypedSchema` function that accepts any yup schema. Which then you can pass along to `validationSchema` option on `useForm`.
@@ -35,7 +35,7 @@ This makes the form values and submitted values typed automatically and caters f
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'yup';
-import { toTypedSchema } from '@vee-validate/yup';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -67,7 +67,7 @@ You can also define default values on your schema directly and it will be picked
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'yup';
-import { toTypedSchema } from '@vee-validate/yup';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -89,7 +89,7 @@ You can also define transforms to cast your fields before submission:
 ```ts
 import { useForm } from 'vee-validate';
 import { object, number } from 'yup';
-import { toTypedSchema } from '@vee-validate/yup';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(

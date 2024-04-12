@@ -87,15 +87,15 @@ You can tell vee-validate about this information by using the typed schema resol
 
 ## Yup
 
-You can use yup as a typed schema with the `@vee-validate/yup` package:
+You can use yup as a typed schema with the `@zaalbarxx/vee-validate-yup` package:
 
 ```sh
 # npm
-npm install @vee-validate/yup
+npm install @zaalbarxx/vee-validate-yup
 # yarn
-yarn add @vee-validate/yup
+yarn add @zaalbarxx/vee-validate-yup
 # pnpm
-pnpm add @vee-validate/yup
+pnpm add @zaalbarxx/vee-validate-yup
 ```
 
 The `@vee-valdiate/yup` package exposes a `toTypedSchema` function that accepts any yup schema. Which then you can pass along to `validationSchema` option on `useForm`.
@@ -105,7 +105,7 @@ This makes the form values and submitted values typed automatically and caters f
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'yup';
-import { toTypedSchema } from '@vee-validate/yup';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -137,7 +137,7 @@ You can also define default values on your schema directly and it will be picked
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'yup';
-import { toTypedSchema } from '@vee-validate/yup';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -159,7 +159,7 @@ You can also define transforms to cast your fields before submission:
 ```ts
 import { useForm } from 'vee-validate';
 import { object, number } from 'yup';
-import { toTypedSchema } from '@vee-validate/yup';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -182,15 +182,15 @@ In their own words it is a:
 
 > TypeScript-first schema validation with static type inference
 
-You can use zod as a typed schema with the `@vee-validate/zod` package:
+You can use zod as a typed schema with the `@zaalbarxx/vee-validate-zod` package:
 
 ```sh
 # npm
-npm install @vee-validate/zod
+npm install @zaalbarxx/vee-validate-zod
 # yarn
-yarn add @vee-validate/zod
+yarn add @zaalbarxx/vee-validate-zod
 # pnpm
-pnpm add @vee-validate/zod
+pnpm add @zaalbarxx/vee-validate-zod
 ```
 
 The `@vee-valdiate/zod` package exposes a `toTypedSchema` function that accepts any zod schema. Which then you can pass along to `validationSchema` option on `useForm`.
@@ -200,7 +200,7 @@ This makes the form values and submitted values typed automatically and caters f
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'zod';
-import { toTypedSchema } from '@vee-validate/zod';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -238,7 +238,7 @@ You can also define default values on your zod schema directly and it will be pi
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'zod';
-import { toTypedSchema } from '@vee-validate/zod';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -259,7 +259,7 @@ You can also define preprocessors to cast your fields before submission:
 ```ts
 import { useForm } from 'vee-validate';
 import { object, number, preprocess } from 'zod';
-import { toTypedSchema } from '@vee-validate/zod';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -282,15 +282,15 @@ handleSubmit(submitted => {
 
 [Valibot](https://valibot.dev/) is a schema library with bundle size, type safety and developer experience in mind. It is a great alternative to Yup and Zod if bundle size is a concern.
 
-You can use valibot as a typed schema with the `@vee-validate/valibot` package:
+You can use valibot as a typed schema with the `@@zaalbarxx/vee-validate-valibot` package:
 
 ```sh
 # npm
-npm install @vee-validate/valibot
+npm install @@zaalbarxx/vee-validate-valibot
 # yarn
-yarn add @vee-validate/valibot
+yarn add @@zaalbarxx/vee-validate-valibot
 # pnpm
-pnpm add @vee-validate/valibot
+pnpm add @@zaalbarxx/vee-validate-valibot
 ```
 
 The `@vee-valdiate/valibot` package exposes a `toTypedSchema` function that accepts any valibot schema. Which then you can pass along to `validationSchema` option on `useForm`.
@@ -300,7 +300,7 @@ This makes the form values and submitted values typed automatically and caters f
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string, minLength } from 'valibot';
-import { toTypedSchema } from '@vee-validate/valibot';
+import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -332,7 +332,7 @@ You can also define default values on your schema directly and it will be picked
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string, withDefault, minLength } from 'valibot';
-import { toTypedSchema } from '@vee-validate/valibot';
+import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
@@ -354,7 +354,7 @@ You can also define transforms to cast your fields before submission:
 ```ts
 import { useForm } from 'vee-validate';
 import { object, number, coerce, any } from 'valibot';
-import { toTypedSchema } from '@vee-validate/valibot';
+import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(

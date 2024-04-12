@@ -24,10 +24,10 @@ Meaning you can create your own custom input and form components and they will b
 
 vee-validate supports synchronous and asynchronous validation and allows defining rules on the field level or the form level using validation schemas. vee-validate has first-class support for:
 
-- [yup](https://github.com/jquense/yup) through `@vee-validate/yup` package.
-- [zod](https://github.com/colinhacks/zod) through `@vee-validate/zod` package.
-- [valibot](https://github.com/fabian-hiller/valibot) through `@vee-validate/valibot` package.
-- [Global validators](/guide/global-validators) (Laravel-like syntax) through `@vee-validate/rules`.
+- [yup](https://github.com/jquense/yup) through `@zaalbarxx/vee-validate-yup` package.
+- [zod](https://github.com/colinhacks/zod) through `@zaalbarxx/vee-validate-zod` package.
+- [valibot](https://github.com/fabian-hiller/valibot) through `@@zaalbarxx/vee-validate-valibot` package.
+- [Global validators](/guide/global-validators) (Laravel-like syntax) through `@zaalbarxx/vee-validate-rules`.
 
 vee-validate has historically been a declarative validation library, and while the composition API changes things a bit, it still follows the same mindset of declarative validation. vee-validate optimizes for building fields and forms, not values.
 
@@ -188,22 +188,22 @@ As you have seen in the previous examples, the `useForm` function accepts a `val
 
 ### Validating with Yup
 
-You can pass yup schemas directly as you've seen previously, but it is recommended that you use the `@vee-validate/yup` package. It will enable better support of yup features and unlock full typescript support for your schemas.
+You can pass yup schemas directly as you've seen previously, but it is recommended that you use the `@zaalbarxx/vee-validate-yup` package. It will enable better support of yup features and unlock full typescript support for your schemas.
 
 ```sh
 # with npm
-npm i @vee-validate/yup
+npm i @zaalbarxx/vee-validate-yup
 # with pnpm
-pnpm add @vee-validate/yup
+pnpm add @zaalbarxx/vee-validate-yup
 # with yarn
-yarn add @vee-validate/yup
+yarn add @zaalbarxx/vee-validate-yup
 ```
 
 The package exposes a `toTypedSchema` function that you can use to wrap your yup schemas, this allows vee-validate to infer form input and output types. [More on that here](/guide/composition-api/typed-schema).
 
 ```ts
 import { useForm } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/yup';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 import * as yup from 'yup';
 
 // Creates a typed schema for vee-validate
@@ -228,22 +228,22 @@ There are a couple of optimization caveats when it comes to using `yup` schemas 
 
 ### Validating with Zod
 
-You can use [Zod](https://github.com/colinhacks/zod) in a very similar manner to how we've been using yup in the past examples. However, you will need to add `@vee-validate/zod` to your dependencies.
+You can use [Zod](https://github.com/colinhacks/zod) in a very similar manner to how we've been using yup in the past examples. However, you will need to add `@zaalbarxx/vee-validate-zod` to your dependencies.
 
 ```sh
 # with npm
-npm i @vee-validate/zod
+npm i @zaalbarxx/vee-validate-zod
 # with pnpm
-pnpm add @vee-validate/zod
+pnpm add @zaalbarxx/vee-validate-zod
 # with yarn
-yarn add @vee-validate/zod
+yarn add @zaalbarxx/vee-validate-zod
 ```
 
 Then you can wrap your zod schemas with `toTypedSchema` function which allows vee-validate to infer form input and output types. [More on that here](/guide/composition-api/typed-schema).
 
 ```ts
 import { useForm } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/zod';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 import { z } from 'zod';
 
 // Creates a typed schema for vee-validate
@@ -270,15 +270,15 @@ There is a known issue with Zod's `refine` and `superRefine` not executing whene
 
 ### Validating with Valibot
 
-You can also use [Valibot](https://valibot.dev/) which is is a schema library with bundle size, type safety and developer experience in mind. It is a great alternative to Yup and Zod if bundle size is a concern. You will need to use the `@vee-validate/valibot` package to use valibot schemas.
+You can also use [Valibot](https://valibot.dev/) which is is a schema library with bundle size, type safety and developer experience in mind. It is a great alternative to Yup and Zod if bundle size is a concern. You will need to use the `@@zaalbarxx/vee-validate-valibot` package to use valibot schemas.
 
 ```sh
 # with npm
-npm i @vee-validate/valibot
+npm i @@zaalbarxx/vee-validate-valibot
 # with pnpm
-pnpm add @vee-validate/valibot
+pnpm add @@zaalbarxx/vee-validate-valibot
 # with yarn
-yarn add @vee-validate/valibot
+yarn add @@zaalbarxx/vee-validate-valibot
 ```
 
 Then you can wrap your Valibot schemas with `toTypedSchema` function which allows vee-validate to infer form input and output types. [More on that here](/guide/composition-api/typed-schema).
@@ -286,7 +286,7 @@ Then you can wrap your Valibot schemas with `toTypedSchema` function which allow
 ```ts
 import { useForm } from 'vee-validate';
 import { string, object, email, minLength } from 'valibot';
-import { toTypedSchema } from '@vee-validate/valibot';
+import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
 
 // Creates a typed schema for vee-validate
 const schema = toTypedSchema(
@@ -308,7 +308,7 @@ Here is a full example using valibot with `useForm`:
 
 #### Global Rules
 
-Another option is using `@vee-validate/rules` which have been historically bundled with past versions of vee-validate. It includes rules that can be defined globally and then used anywhere using Laravel-like string expressions.
+Another option is using `@zaalbarxx/vee-validate-rules` which have been historically bundled with past versions of vee-validate. It includes rules that can be defined globally and then used anywhere using Laravel-like string expressions.
 
 You can refer to the full guide on global rules [here](/guide/global-validators).
 

@@ -1,4 +1,4 @@
-# @vee-validate/rules
+# @zaalbarxx/vee-validate-rules
 
 <p align="center">
   <a href="https://vee-validate.logaretm.com/v4/guide/global-validators" target="_blank">
@@ -23,10 +23,10 @@ This is where this package comes in, It includes the most common validators you 
 ## Installation
 
 ```sh
-yarn add @vee-validate/rules
+yarn add @zaalbarxx/vee-validate-rules
 
 # or with npm
-npm install @vee-validate/rules
+npm install @zaalbarxx/vee-validate-rules
 ```
 
 ## Usage
@@ -35,18 +35,18 @@ Use the `defineRule` function from `vee-validate` core library to add rules expo
 
 ```js
 import { defineRule } from 'vee-validate';
-import { required, email, min } from '@vee-validate/rules';
+import { required, email, min } from '@zaalbarxx/vee-validate-rules';
 
 defineRule('required', required);
 defineRule('email', email);
 defineRule('min', min);
 ```
 
-Or you can globally define all the available rules in the `@vee-validate/rules` package:
+Or you can globally define all the available rules in the `@zaalbarxx/vee-validate-rules` package:
 
 ```js
 import { defineRule } from 'vee-validate';
-import * as rules from '@vee-validate/rules';
+import * as rules from '@zaalbarxx/vee-validate-rules';
 
 Object.keys(rules).forEach(rule => {
   defineRule(rule, rules[rule]);

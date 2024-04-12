@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/zod';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 import { z } from 'zod';
 
 const { errors, defineField } = useForm({

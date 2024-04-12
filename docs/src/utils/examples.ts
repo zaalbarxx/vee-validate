@@ -17,10 +17,10 @@ export function getViteProjectConfig(files: Record<string, string>): Project {
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vee-validate/zod": "^${version}",
-    "@vee-validate/yup": "^${version}",
-    "@vee-validate/rules": "^${version}",
-    "@vee-validate/i18n": "^${version}",
+    "@zaalbarxx/vee-validate-zod": "^${version}",
+    "@zaalbarxx/vee-validate-yup": "^${version}",
+    "@zaalbarxx/vee-validate-rules": "^${version}",
+    "@zaalbarxx/vee-validate-i18n": "^${version}",
     "vee-validate": "^${version}",
     "vue": "^3.3.11",
     "yup": "latest",

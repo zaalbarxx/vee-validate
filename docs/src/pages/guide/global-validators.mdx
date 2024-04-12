@@ -236,33 +236,33 @@ This makes defining rules more expressive and less limited by the string format.
 
 For dynamic expressions, you can use computed properties in the same way to define dynamic validation rules.
 
-## @vee-validate/rules
+## @zaalbarxx/vee-validate-rules
 
-VeeValidate offers a wide range of common validators that you can use as global validators, they are packed in a separate package under the `@vee-validate/rules` namespace
+VeeValidate offers a wide range of common validators that you can use as global validators, they are packed in a separate package under the `@zaalbarxx/vee-validate-rules` namespace
 
 ```sh
-yarn add @vee-validate/rules
+yarn add @zaalbarxx/vee-validate-rules
 
 # or with npm
-npm install @vee-validate/rules
+npm install @zaalbarxx/vee-validate-rules
 ```
 
 You can then start importing and defining rules globally:
 
 ```js
 import { defineRule } from 'vee-validate';
-import { required, email, min } from '@vee-validate/rules';
+import { required, email, min } from '@zaalbarxx/vee-validate-rules';
 
 defineRule('required', required);
 defineRule('email', email);
 defineRule('min', min);
 ```
 
-Or you can globally define all the available rules in the `@vee-validate/rules` package:
+Or you can globally define all the available rules in the `@zaalbarxx/vee-validate-rules` package:
 
 ```js
 import { defineRule } from 'vee-validate';
-import * as AllRules from '@vee-validate/rules';
+import * as AllRules from '@zaalbarxx/vee-validate-rules';
 
 Object.keys(AllRules).forEach(rule => {
   defineRule(rule, AllRules[rule]);

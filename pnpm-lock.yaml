@@ -167,13 +167,13 @@ importers:
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
-      '@vee-validate/valibot':
+      '@@zaalbarxx/vee-validate-valibot':
         specifier: ^4.12.6
         version: link:../packages/valibot
-      '@vee-validate/yup':
+      '@zaalbarxx/vee-validate-yup':
         specifier: ^4.12.6
         version: link:../packages/yup
-      '@vee-validate/zod':
+      '@zaalbarxx/vee-validate-zod':
         specifier: ^4.12.6
         version: link:../packages/zod
       '@vue/repl':

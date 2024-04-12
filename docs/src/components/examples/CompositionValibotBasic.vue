@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/valibot';
+import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
 import { email as emailValidator, string, minLength, object } from 'valibot';
 
 const { errors, defineField } = useForm({

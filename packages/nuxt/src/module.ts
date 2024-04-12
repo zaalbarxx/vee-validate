@@ -37,9 +37,9 @@ const composables = [
 
 const schemaProviders = ['zod', 'yup', 'valibot'] as const;
 const schemaProviderResolvers: Record<(typeof schemaProviders)[number], string> = {
-  zod: '@vee-validate/zod',
-  yup: '@vee-validate/yup',
-  valibot: '@vee-validate/valibot',
+  zod: '@zaalbarxx/vee-validate-zod',
+  yup: '@zaalbarxx/vee-validate-yup',
+  valibot: '@@zaalbarxx/vee-validate-valibot',
 };
 
 export default defineNuxtModule<VeeValidateNuxtOptions>({
@@ -115,13 +115,13 @@ function checkSchemaResolverDependencies(pkgName: (typeof schemaProviders)[numbe
 
 function checkForValibot(options: VeeValidateNuxtOptions) {
   checkSchemaResolverDependencies('valibot');
-  if (isPackageExists('@vee-validate/valibot') && isPackageExists('valibot')) {
+  if (isPackageExists('@@zaalbarxx/vee-validate-valibot') && isPackageExists('valibot')) {
     logger.info('Using valibot with vee-validate');
     if (options.autoImports) {
       addImports({
         name: 'toTypedSchema',
         as: 'toTypedSchema',
-        from: '@vee-validate/valibot',
+        from: '@@zaalbarxx/vee-validate-valibot',
       });
     }
 
@@ -133,13 +133,13 @@ function checkForValibot(options: VeeValidateNuxtOptions) {
 
 function checkForZod(options: VeeValidateNuxtOptions) {
   checkSchemaResolverDependencies('zod');
-  if (isPackageExists('@vee-validate/zod') && isPackageExists('zod')) {
+  if (isPackageExists('@zaalbarxx/vee-validate-zod') && isPackageExists('zod')) {
     logger.info('Using zod with vee-validate');
     if (options.autoImports) {
       addImports({
         name: 'toTypedSchema',
         as: 'toTypedSchema',
-        from: '@vee-validate/zod',
+        from: '@zaalbarxx/vee-validate-zod',
       });
     }
 
@@ -151,13 +151,13 @@ function checkForZod(options: VeeValidateNuxtOptions) {
 
 function checkForYup(options: VeeValidateNuxtOptions) {
   checkSchemaResolverDependencies('yup');
-  if (isPackageExists('@vee-validate/yup') && isPackageExists('yup')) {
+  if (isPackageExists('@zaalbarxx/vee-validate-yup') && isPackageExists('yup')) {
     logger.info('Using yup with vee-validate');
     if (options.autoImports) {
       addImports({
         name: 'toTypedSchema',
         as: 'toTypedSchema',
-        from: '@vee-validate/yup',
+        from: '@zaalbarxx/vee-validate-yup',
       });
     }
 

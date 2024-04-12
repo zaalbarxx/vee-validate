@@ -1,4 +1,4 @@
-# @vee-validate/valibot
+# @@zaalbarxx/vee-validate-valibot
 
 ## 4.12.6
 

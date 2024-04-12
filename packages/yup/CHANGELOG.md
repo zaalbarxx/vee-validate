@@ -296,19 +296,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.8.4](https://github.com/logaretm/vee-validate/compare/v4.8.3...v4.8.4) (2023-03-24)
 
-**Note:** Version bump only for package @vee-validate/yup
+**Note:** Version bump only for package @zaalbarxx/vee-validate-yup
 
 ## [4.8.3](https://github.com/logaretm/vee-validate/compare/v4.8.2...v4.8.3) (2023-03-15)
 
-**Note:** Version bump only for package @vee-validate/yup
+**Note:** Version bump only for package @zaalbarxx/vee-validate-yup
 
 ## [4.8.2](https://github.com/logaretm/vee-validate/compare/v4.8.1...v4.8.2) (2023-03-14)
 
-**Note:** Version bump only for package @vee-validate/yup
+**Note:** Version bump only for package @zaalbarxx/vee-validate-yup
 
 ## [4.8.1](https://github.com/logaretm/vee-validate/compare/v4.8.0...v4.8.1) (2023-03-12)
 
-**Note:** Version bump only for package @vee-validate/yup
+**Note:** Version bump only for package @zaalbarxx/vee-validate-yup
 
 # [4.8.0](https://github.com/logaretm/vee-validate/compare/v4.7.4...v4.8.0) (2023-03-12)
 

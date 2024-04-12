@@ -85,15 +85,15 @@ You can use Yup schemas to validate fields individually by passing the schema as
 
 ### Validating with Zod
 
-You can use [Zod](https://github.com/colinhacks/zod), however, you will need to add `@vee-validate/zod` to your dependencies.
+You can use [Zod](https://github.com/colinhacks/zod), however, you will need to add `@zaalbarxx/vee-validate-zod` to your dependencies.
 
 ```sh
 # with npm
-npm i @vee-validate/zod
+npm i @zaalbarxx/vee-validate-zod
 # with pnpm
-pnpm add @vee-validate/zod
+pnpm add @zaalbarxx/vee-validate-zod
 # with yarn
-yarn add @vee-validate/zod
+yarn add @zaalbarxx/vee-validate-zod
 ```
 
 Then you can wrap your zod field schemas with `toTypedSchema` function. [More on that here](/guide/composition-api/typed-schema).
@@ -102,15 +102,15 @@ Then you can wrap your zod field schemas with `toTypedSchema` function. [More on
 
 ### Validating with Valibot
 
-You can use [Valibot](https://valibot.dev/) to validate your fields, however, you will need to add `@vee-validate/valibot` to your dependencies.
+You can use [Valibot](https://valibot.dev/) to validate your fields, however, you will need to add `@@zaalbarxx/vee-validate-valibot` to your dependencies.
 
 ```sh
 # with npm
-npm i @vee-validate/valibot
+npm i @@zaalbarxx/vee-validate-valibot
 # with pnpm
-pnpm add @vee-validate/valibot
+pnpm add @@zaalbarxx/vee-validate-valibot
 # with yarn
-yarn add @vee-validate/valibot
+yarn add @@zaalbarxx/vee-validate-valibot
 ```
 
 Then you can wrap your valibot field schemas with `toTypedSchema` function. [More on that here](/guide/composition-api/typed-schema).
@@ -121,7 +121,7 @@ Then you can wrap your valibot field schemas with `toTypedSchema` function. [Mor
 
 #### Validating with global validators
 
-Another option is using `@vee-validate/rules` which have been historically bundled with past versions of vee-validate. It includes rules that can be defined globally and then used anywhere using Laravel-like string expressions.
+Another option is using `@zaalbarxx/vee-validate-rules` which have been historically bundled with past versions of vee-validate. It includes rules that can be defined globally and then used anywhere using Laravel-like string expressions.
 
 You can refer to the full guide on global rules [here](/guide/global-validators).
 

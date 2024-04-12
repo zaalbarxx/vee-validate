@@ -1,4 +1,4 @@
-# @vee-validate/joi
+# @zaalbarxx/vee-validate-joi
 
 <p align="center">
   <a href="https://vee-validate.logaretm.com/v4/integrations/joi-schema-validation/" target="_blank">
@@ -26,15 +26,15 @@ In their own words it is a:
 
 > The most powerful schema description language and data validator for JavaScript.
 
-You can use joi as a typed schema with the `@vee-validate/joi` package:
+You can use joi as a typed schema with the `@zaalbarxx/vee-validate-joi` package:
 
 ```sh
 # npm
-npm install @vee-validate/joi
+npm install @zaalbarxx/vee-validate-joi
 # yarn
-yarn add @vee-validate/joi
+yarn add @zaalbarxx/vee-validate-joi
 # pnpm
-pnpm add @vee-validate/joi
+pnpm add @zaalbarxx/vee-validate-joi
 ```
 
 The `@vee-valdiate/joi` package exposes a `toTypedSchema` function that accepts any joi schema. Which then you can pass along to `validationSchema` option on `useForm`.
@@ -44,7 +44,7 @@ This makes the form values and submitted values typed automatically and caters f
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'joi';
-import { toTypedSchema } from '@vee-validate/joi';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-joi';
 
 interface FormData {
   email: string;
@@ -82,7 +82,7 @@ You can also define default values on your joi schema directly and it will be pi
 ```ts
 import { useForm } from 'vee-validate';
 import { object, string } from 'joi';
-import { toTypedSchema } from '@vee-validate/joi';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-joi';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(

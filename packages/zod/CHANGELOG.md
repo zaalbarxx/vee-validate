@@ -296,7 +296,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.8.4](https://github.com/logaretm/vee-validate/compare/v4.8.3...v4.8.4) (2023-03-24)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.8.3](https://github.com/logaretm/vee-validate/compare/v4.8.2...v4.8.3) (2023-03-15)
 
@@ -306,11 +306,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.8.2](https://github.com/logaretm/vee-validate/compare/v4.8.1...v4.8.2) (2023-03-14)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.8.1](https://github.com/logaretm/vee-validate/compare/v4.8.0...v4.8.1) (2023-03-12)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.8.0](https://github.com/logaretm/vee-validate/compare/v4.7.4...v4.8.0) (2023-03-12)
 
@@ -325,63 +325,63 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.7.4](https://github.com/logaretm/vee-validate/compare/v4.7.3...v4.7.4) (2023-02-07)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.7.3](https://github.com/logaretm/vee-validate/compare/v4.7.2...v4.7.3) (2022-11-13)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.7.2](https://github.com/logaretm/vee-validate/compare/v4.7.1...v4.7.2) (2022-11-02)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.7.1](https://github.com/logaretm/vee-validate/compare/v4.7.0...v4.7.1) (2022-10-23)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.7.0](https://github.com/logaretm/vee-validate/compare/v4.6.10...v4.7.0) (2022-10-09)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.10](https://github.com/logaretm/vee-validate/compare/v4.6.9...v4.6.10) (2022-09-30)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.9](https://github.com/logaretm/vee-validate/compare/v4.6.8...v4.6.9) (2022-09-19)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.8](https://github.com/logaretm/vee-validate/compare/v4.6.7...v4.6.8) (2022-09-19)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.7](https://github.com/logaretm/vee-validate/compare/v4.6.6...v4.6.7) (2022-08-27)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.6](https://github.com/logaretm/vee-validate/compare/v4.6.5...v4.6.6) (2022-08-16)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.5](https://github.com/logaretm/vee-validate/compare/v4.6.4...v4.6.5) (2022-08-11)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.4](https://github.com/logaretm/vee-validate/compare/v4.6.3...v4.6.4) (2022-08-07)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.3](https://github.com/logaretm/vee-validate/compare/v4.6.2...v4.6.3) (2022-08-07)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.2](https://github.com/logaretm/vee-validate/compare/v4.6.1...v4.6.2) (2022-07-17)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.6.1](https://github.com/logaretm/vee-validate/compare/v4.6.0...v4.6.1) (2022-07-12)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.6.0](https://github.com/logaretm/vee-validate/compare/v4.5.11...v4.6.0) (2022-07-11)
 
@@ -391,155 +391,155 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.5.11](https://github.com/logaretm/vee-validate/compare/v4.5.10...v4.5.11) (2022-04-10)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.10](https://github.com/logaretm/vee-validate/compare/v4.5.9...v4.5.10) (2022-03-08)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.9](https://github.com/logaretm/vee-validate/compare/v4.5.8...v4.5.9) (2022-02-22)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.8](https://github.com/logaretm/vee-validate/compare/v4.5.7...v4.5.8) (2022-01-23)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.7](https://github.com/logaretm/vee-validate/compare/v4.5.6...v4.5.7) (2021-12-07)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.6](https://github.com/logaretm/vee-validate/compare/v4.5.5...v4.5.6) (2021-11-17)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.5](https://github.com/logaretm/vee-validate/compare/v4.5.4...v4.5.5) (2021-11-01)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.4](https://github.com/logaretm/vee-validate/compare/v4.5.3...v4.5.4) (2021-10-20)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.3](https://github.com/logaretm/vee-validate/compare/v4.5.2...v4.5.3) (2021-10-17)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.2](https://github.com/logaretm/vee-validate/compare/v4.5.1...v4.5.2) (2021-09-30)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.5.1](https://github.com/logaretm/vee-validate/compare/v4.5.0...v4.5.1) (2021-09-29)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.5.0](https://github.com/logaretm/vee-validate/compare/v4.4.11...v4.5.0) (2021-09-26)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.4.11](https://github.com/logaretm/vee-validate/compare/v4.4.10...v4.4.11) (2021-09-11)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.4.10](https://github.com/logaretm/vee-validate/compare/v4.4.9...v4.4.10) (2021-08-31)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.4.9](https://github.com/logaretm/vee-validate/compare/v4.4.8...v4.4.9) (2021-08-05)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.4.8](https://github.com/logaretm/vee-validate/compare/v4.4.7...v4.4.8) (2021-07-31)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.4.7](https://github.com/logaretm/vee-validate/compare/v4.4.6...v4.4.7) (2021-07-20)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.4.6](https://github.com/logaretm/vee-validate/compare/v4.4.5...v4.4.6) (2021-07-08)
 
 ## [4.4.5](https://github.com/logaretm/vee-validate/compare/v4.4.4...v4.4.5) (2021-06-13)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.4.4](https://github.com/logaretm/vee-validate/compare/v4.4.3...v4.4.4) (2021-06-05)
 
 ## [4.4.3](https://github.com/logaretm/vee-validate/compare/v4.4.2...v4.4.3) (2021-06-02)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.4.2](https://github.com/logaretm/vee-validate/compare/v4.4.1...v4.4.2) (2021-05-28)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.4.1](https://github.com/logaretm/vee-validate/compare/v4.4.0...v4.4.1) (2021-05-24)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.4.0](https://github.com/logaretm/vee-validate/compare/v4.4.0-alpha.2...v4.4.0) (2021-05-23)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.4.0-alpha.2](https://github.com/logaretm/vee-validate/compare/v4.4.0-alpha.1...v4.4.0-alpha.2) (2021-05-14)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.4.0-alpha.1](https://github.com/logaretm/vee-validate/compare/v4.4.0-alpha.0...v4.4.0-alpha.1) (2021-05-14)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.4.0-alpha.0](https://github.com/logaretm/vee-validate/compare/v4.3.6...v4.4.0-alpha.0) (2021-05-14)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.3.6](https://github.com/logaretm/vee-validate/compare/v4.3.5...v4.3.6) (2021-05-08)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.3.5](https://github.com/logaretm/vee-validate/compare/v4.3.4...v4.3.5) (2021-05-01)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.3.4](https://github.com/logaretm/vee-validate/compare/v4.3.3...v4.3.4) (2021-04-27)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.3.3](https://github.com/logaretm/vee-validate/compare/v4.3.2...v4.3.3) (2021-04-22)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.3.2](https://github.com/logaretm/vee-validate/compare/v4.3.1...v4.3.2) (2021-04-21)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.3.1](https://github.com/logaretm/vee-validate/compare/v4.3.0...v4.3.1) (2021-04-18)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.3.0](https://github.com/logaretm/vee-validate/compare/v4.2.4...v4.3.0) (2021-04-07)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.2.4](https://github.com/logaretm/vee-validate/compare/v4.2.3...v4.2.4) (2021-03-26)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.2.3](https://github.com/logaretm/vee-validate/compare/v4.2.2...v4.2.3) (2021-03-22)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.2.2](https://github.com/logaretm/vee-validate/compare/v4.2.1...v4.2.2) (2021-03-03)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.2.1](https://github.com/logaretm/vee-validate/compare/v4.2.0...v4.2.1) (2021-02-26)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 # [4.2.0](https://github.com/logaretm/vee-validate/compare/v4.1.20...v4.2.0) (2021-02-24)
 
-**Note:** Version bump only for package @vee-validate/zod
+**Note:** Version bump only for package @zaalbarxx/vee-validate-zod
 
 ## [4.1.20](https://github.com/logaretm/vee-validate/compare/v4.1.19...v4.1.20) (2021-02-24)
 

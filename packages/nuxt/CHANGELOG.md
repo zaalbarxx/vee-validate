@@ -1,4 +1,4 @@
-# @vee-validate/nuxt
+# @zaalbarxx/vee-validate-nuxt
 
 ## 4.12.6
 

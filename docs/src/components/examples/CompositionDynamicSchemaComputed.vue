@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useForm } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/yup';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 import * as yup from 'yup';
 
 const limit = ref(5);

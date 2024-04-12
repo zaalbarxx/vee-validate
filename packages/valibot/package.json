@@ -1,5 +1,5 @@
 {
-  "name": "@zaalbarxx/vee-validate/valibot",
+  "name": "@zaalbarxx/vee-validate-valibot",
   "version": "4.12.6",
   "description": "vee-validate integration with valibot schema validation",
   "author": "Abdelrahman Awad <logaretm1@gmail.com>",

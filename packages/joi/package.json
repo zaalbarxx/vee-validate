@@ -1,5 +1,5 @@
 {
-  "name": "@vee-validate/joi",
+  "name": "@zaalbarxx/vee-validate-joi",
   "version": "4.12.6",
   "description": "vee-validate integration with joi schema validation",
   "author": "Abdelrahman Awad <logaretm1@gmail.com>",

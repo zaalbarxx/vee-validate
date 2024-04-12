@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/yup';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 import * as yup from 'yup';
 
 const { errors, defineField } = useForm({
