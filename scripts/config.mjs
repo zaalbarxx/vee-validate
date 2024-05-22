@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const formatNameMap = {
-  '@zaalbarxx/vee-validate': 'VeeValidate',
+  'vee-validate': 'VeeValidate',
   rules: 'VeeValidateRules',
   i18n: 'VeeValidateI18n',
   zod: 'VeeValidateZod',
@@ -20,7 +20,7 @@ const formatNameMap = {
 };
 
 const pkgNameMap = {
-  '@zaalbarxx/vee-validate': '@zaalbarxx/vee-validate',
+  'vee-validate': 'vee-validate',
   rules: 'vee-validate-rules',
   i18n: 'vee-validate-i18n',
   zod: 'vee-validate-zod',

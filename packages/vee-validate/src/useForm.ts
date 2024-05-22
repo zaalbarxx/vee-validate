@@ -97,7 +97,8 @@ let FORM_COUNTER = 0;
 const PRIVATE_PATH_STATE_KEYS: (keyof PathState)[] = ['bails', 'fieldsCount', 'id', 'multiple', 'type', 'validate'];
 
 function resolveInitialValues<TValues extends GenericObject = GenericObject>(opts?: FormOptions<TValues>): TValues {
-  const providedValues = { ...toValue(opts?.initialValues || {}) };
+  const givenInitial = opts?.initialValues || {};
+  const providedValues = { ...toValue(givenInitial) };
   const schema = unref(opts?.validationSchema);
   if (schema && isTypedSchema(schema) && isCallable(schema.cast)) {
     return deepCopy(schema.cast(providedValues) || {});
@@ -296,13 +297,15 @@ export function useForm<
     }
 
     const isRequired = computed(() => {
-      if (isTypedSchema(schema)) {
-        return (schema as TypedSchema).describe?.(toValue(path)).required ?? false;
+      const schemaValue = toValue(schema);
+      if (isTypedSchema(schemaValue)) {
+        return schemaValue.describe?.(toValue(path)).required ?? false;
       }
 
       // Path own schema
-      if (isTypedSchema(config?.schema)) {
-        return (config?.schema as TypedSchema).describe?.().required ?? false;
+      const configSchemaValue = toValue(config?.schema);
+      if (isTypedSchema(configSchemaValue)) {
+        return configSchemaValue.describe?.().required ?? false;
       }
 
       return false;

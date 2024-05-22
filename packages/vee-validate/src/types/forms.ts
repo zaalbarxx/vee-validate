@@ -25,9 +25,8 @@ export interface TypedSchema<TInput = any, TOutput = TInput> {
   describe?(path?: Path<TInput>): Partial<TypedSchemaPathDescription>;
 }
 
-export type InferOutput<TSchema extends TypedSchema> = TSchema extends TypedSchema<any, infer TOutput>
-  ? TOutput
-  : never;
+export type InferOutput<TSchema extends TypedSchema> =
+  TSchema extends TypedSchema<any, infer TOutput> ? TOutput : never;
 
 export type InferInput<TSchema extends TypedSchema> = TSchema extends TypedSchema<infer TInput, any> ? TInput : never;
 
@@ -85,7 +84,7 @@ export interface PathStateConfig {
   label: MaybeRefOrGetter<string | undefined>;
   type: InputType;
   validate: FieldValidator;
-  schema?: TypedSchema;
+  schema?: MaybeRefOrGetter<TypedSchema | undefined>;
 }
 
 export interface PathState<TValue = unknown> {

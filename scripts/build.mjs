@@ -74,7 +74,7 @@ async function build(pkg) {
     const outputPath = path.join(pkgout, bundleName);
     fs.outputFileSync(outputPath, code);
     const stats = reportSize({ code, path: outputPath });
-    // eslint-disable-next-line
+     
     console.log(`${chalk.green('Output File:')} ${bundleName} ${stats}`);
 
     if (format === 'umd') {
@@ -90,8 +90,8 @@ async function build(pkg) {
 
 (async function Bundle() {
   const arg = [...process.argv][2];
-  if (arg === '@zaalbarxx/vee-validate' || !arg) {
-    await build('@zaalbarxx/vee-validate');
+  if (arg === 'vee-validate' || !arg) {
+    await build('vee-validate');
   }
 
   if (arg === 'rules' || !arg) {

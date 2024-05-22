@@ -1,11 +1,20 @@
 # @@zaalbarxx/vee-validate-valibot
 
-## 4.12.6
+## 4.12.7
+
+### Patch Changes
+
+- c4415f8: fix: ensure meta.required is reactive whenever the schema changes closes #4738
+- Updated dependencies [1376794]
+- Updated dependencies [c4415f8]
+  - vee-validate@4.12.7
+
+## 4.12.7
 
 ### Patch Changes
 
 - Updated dependencies [07d01fd]
-  - vee-validate@4.12.6
+  - vee-validate@4.12.7
 
 ## 4.12.5
 
