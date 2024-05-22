@@ -15,7 +15,7 @@ When using the composition API, there are a few things that are not clear when f
 You might've noticed that some examples in the docs pass the field name as a function to `useField`:
 
 ```js
-import { useField } from 'vee-validate';
+import { useField } from '@zaalbarxx/vee-validate';
 
 export default {
   props: {
@@ -30,7 +30,7 @@ export default {
 This is mainly because the `props` in Vue.js is a reactive object, meaning if you access or destruct any of its properties they will lose the reactivity aspect. Let's say you did the following:
 
 ```js
-import { useField } from 'vee-validate';
+import { useField } from '@zaalbarxx/vee-validate';
 
 export default {
   props: {
@@ -91,7 +91,7 @@ This means if you try the following, it won't work as expected when used in your
 
 ```vue
 <script setup>
-import { useField, useForm, useFieldArray } from 'vee-validate';
+import { useField, useForm, useFieldArray } from '@zaalbarxx/vee-validate';
 
 export default {
   setup() {
@@ -125,7 +125,7 @@ This is because the `setup` function doesn't recursively expose the refs inside 
 ```vue
 <script setup>
 import { reactive } from 'vue';
-import { useField, useForm, useFieldArray } from 'vee-validate';
+import { useField, useForm, useFieldArray } from '@zaalbarxx/vee-validate';
 
 const form = reactive(useForm());
 const field = reactive(useField('field'));

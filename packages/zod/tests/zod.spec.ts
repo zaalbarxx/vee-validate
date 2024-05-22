@@ -1,6 +1,6 @@
 import { useField, useForm } from '@/vee-validate';
 import { toTypedSchema } from '@/zod';
-import { mountWithHoc, flushPromises, setValue } from 'vee-validate/tests/helpers';
+import { mountWithHoc, flushPromises, setValue } from '@zaalbarxx/vee-validate/tests/helpers';
 import { Ref } from 'vue';
 import { z } from 'zod';
 

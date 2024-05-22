@@ -40,7 +40,7 @@ You may access your form's values using the `values` scoped slot prop on the `Fo
 </template>
 
 <script setup>
-import { Form, Field } from 'vee-validate';
+import { Form, Field } from '@zaalbarxx/vee-validate';
 </script>
 ```
 
@@ -62,7 +62,7 @@ So if you were to add a `submit` handler on the `<Form />` component, vee-valida
 </template>
 
 <script setup>
-import { Form, Field, ErrorMessage } from 'vee-validate';
+import { Form, Field, ErrorMessage } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -125,7 +125,7 @@ The `handleSubmit` slot prop is probably the most common method you will use to 
 </template>
 
 <script setup>
-import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate';
+import { Form as VeeForm, Field, ErrorMessage } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -160,7 +160,7 @@ Alternatively if you plan to submit forms natively which will cause a page "relo
 </template>
 
 <script setup>
-import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate';
+import { Form as VeeForm, Field, ErrorMessage } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -244,7 +244,7 @@ In case you want to perform some logic after a form fails to submit due to valid
 </template>
 
 <script setup>
-import { Form, Field, ErrorMessage } from 'vee-validate';
+import { Form, Field, ErrorMessage } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -287,7 +287,7 @@ Using the `initialValues` prop you can send an object that contains the field na
 </template>
 
 <script setup>
-import { Form, Field, ErrorMessage } from 'vee-validate';
+import { Form, Field, ErrorMessage } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -448,7 +448,7 @@ Form reset is handled automatically if you are using the `as` prop to render a `
 </template>
 
 <script setup>
-import { Form, Field } from 'vee-validate';
+import { Form, Field } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -498,7 +498,7 @@ This is an example of using the form actions object to reset the form:
 </template>
 
 <script setup>
-import { Form, Field } from 'vee-validate';
+import { Form, Field } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const schema = yup.object({
@@ -551,7 +551,7 @@ You can also use template `$refs` to reset the form whenever you need:
 </template>
 
 <script setup>
-import { Form, Field } from 'vee-validate';
+import { Form, Field } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const schema = yup.object({

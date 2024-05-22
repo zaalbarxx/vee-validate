@@ -28,7 +28,7 @@ npm install @zaalbarxx/vee-validate-i18n
 import the `localize()` function from `@zaalbarxx/vee-validate-i18n` which returns a message generator function:
 
 ```js
-import { defineRule, configure } from 'vee-validate';
+import { defineRule, configure } from '@zaalbarxx/vee-validate';
 import { required } from '@zaalbarxx/vee-validate-rules';
 import { localize } from '@zaalbarxx/vee-validate-i18n';
 
@@ -48,7 +48,7 @@ configure({
 If you have multiple locales in your application, you can add them like this:
 
 ```js
-import { defineRule, configure } from 'vee-validate';
+import { defineRule, configure } from '@zaalbarxx/vee-validate';
 import { required } from '@zaalbarxx/vee-validate-rules';
 import { localize } from '@zaalbarxx/vee-validate-i18n';
 
@@ -86,7 +86,7 @@ To save you a lot of time translating `@zaalbarxx/vee-validate-rules` messages t
 You can import the locales from their JSON directory like this:
 
 ```js
-import { configure } from 'vee-validate';
+import { configure } from '@zaalbarxx/vee-validate';
 import { localize } from '@zaalbarxx/vee-validate-i18n';
 import en from '@zaalbarxx/vee-validate-i18n/dist/locale/en.json';
 import ar from '@zaalbarxx/vee-validate-i18n/dist/locale/ar.json';

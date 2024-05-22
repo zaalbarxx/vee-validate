@@ -17,7 +17,7 @@ function installDevtoolsPlugin(app: App) {
       {
         id: 'vee-validate-devtools-plugin',
         label: 'VeeValidate Plugin',
-        packageName: 'vee-validate',
+        packageName: '@zaalbarxx/vee-validate',
         homepage: 'https://vee-validate.logaretm.com/v4',
         app,
         logo: 'https://vee-validate.logaretm.com/v4/logo.png',
@@ -124,7 +124,7 @@ function setupApiHooks(api: DevtoolsPluginApi<Record<string, any>>) {
   api.addInspector({
     id: INSPECTOR_ID,
     icon: 'rule',
-    label: 'vee-validate',
+    label: '@zaalbarxx/vee-validate',
     noSelectionText: 'Select a vee-validate node to inspect',
     actions: [
       {

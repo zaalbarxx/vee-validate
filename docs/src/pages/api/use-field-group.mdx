@@ -22,7 +22,7 @@ import DocBadge from '@/components/DocBadge.vue';
   </Form>
 </template>
   <script setup>
-import { useField, useFieldGroup } from 'vee-validate';
+import { useField, useFieldGroup } from '@zaalbarxx/vee-validate';
 
 const { meta } = useFieldGroup();
 const { value, errorMessage } = useField('name', inputValue => !!inputValue);

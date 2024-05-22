@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { useForm, useFieldArray } from 'vee-validate';
+import { useForm, useFieldArray } from '@zaalbarxx/vee-validate';
 
 const { handleSubmit } = useForm({
   initialValues: {

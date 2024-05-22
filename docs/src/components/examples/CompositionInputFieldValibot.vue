@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-import { useField } from 'vee-validate';
+import { useField } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
 import { string, email, minLength } from 'valibot';
 

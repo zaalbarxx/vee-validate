@@ -20,13 +20,13 @@ VeeValidate allows you to define validation rules globally on the app-level whic
 You can define a global validator using the `defineRule` function exported by vee-validate:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 ```
 
 The `defineRule` function accepts a rule name that acts as an identifier for that validation rule, the second argument is the validator function that will verify the field value. Here is an example of a simple `required` and an `email` rule:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 
 defineRule('required', value => {
   if (!value || !value.length) {
@@ -86,7 +86,7 @@ Sometimes your rules require more information to work properly, for example, if 
 VeeValidate passes rules arguments or (configuration) as the second argument to the validator function which is often an array containing the arguments in the same order they were passed in. Here is an example defining a `minLength` rule:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 
 defineRule('minLength', (value, [limit]) => {
   // The field is empty so it should pass
@@ -111,7 +111,7 @@ And then you can use it on the `Field` component like this:
 Note that to pass arguments to rules, you need to place a colon `:` character to signify the beginning of rules. You can pass multiple arguments as a comma-separated list. Here is an example for a `minMax` rule:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 
 defineRule('minMax', (value, [min, max]) => {
   // The field is empty so it should pass
@@ -157,7 +157,7 @@ Here is an example that uses all the rules we've defined prior in this page in a
 </template>
 
 <script setup>
-import { Form, Field } from 'vee-validate';
+import { Form, Field } from '@zaalbarxx/vee-validate';
 
 const schema = {
   email: 'required|email',
@@ -175,7 +175,7 @@ Assuming you want to create a rule that verifies that a field matches another, l
 So assuming you want to build a `confirmed` rule, you would make it configurable by accepting the `target` field name and you can use the `ValidationContext.form` object to access its value:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 
 defineRule('confirmed', (value, [target], ctx) => {
   if (value === ctx.form[target]) {
@@ -197,7 +197,7 @@ Here is an example of the two fields using that rule:
 There is a shorthand for this using `@` prefix before specifying arguments, this tells vee-validate to automatically swap the specified field value in the arguments array:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 
 defineRule('confirmed', (value, [target]) => {
   if (value === target) {
@@ -250,7 +250,7 @@ npm install @zaalbarxx/vee-validate-rules
 You can then start importing and defining rules globally:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 import { required, email, min } from '@zaalbarxx/vee-validate-rules';
 
 defineRule('required', required);
@@ -261,7 +261,7 @@ defineRule('min', min);
 Or you can globally define all the available rules in the `@zaalbarxx/vee-validate-rules` package:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 import * as AllRules from '@zaalbarxx/vee-validate-rules';
 
 Object.keys(AllRules).forEach(rule => {

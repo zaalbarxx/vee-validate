@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);

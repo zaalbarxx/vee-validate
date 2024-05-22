@@ -1,5 +1,5 @@
 <script setup>
-import { Field, Form, ErrorMessage } from 'vee-validate';
+import { Field, Form, ErrorMessage } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const schema = yup.object({

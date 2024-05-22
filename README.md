@@ -83,7 +83,7 @@ Create your form with `useForm` and then use `defineField` to create your field 
 
 ```vue
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 // Validation, or use `yup` or `zod`
 function required(value) {
@@ -125,7 +125,7 @@ Higher-order components can also be used to build forms. Register the `Field` an
 
 ```vue
 <script setup>
-import { Field, Form } from 'vee-validate';
+import { Field, Form } from '@zaalbarxx/vee-validate';
 
 // Validation, or use `yup` or `zod`
 function required(value) {

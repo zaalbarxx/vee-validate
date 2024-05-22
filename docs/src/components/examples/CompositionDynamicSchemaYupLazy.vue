@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 import * as yup from 'yup';
 

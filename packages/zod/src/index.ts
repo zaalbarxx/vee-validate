@@ -12,7 +12,12 @@ import {
   ZodFirstPartyTypeKind,
 } from 'zod';
 import { PartialDeep } from 'type-fest';
-import { isNotNestedPath, type TypedSchema, type TypedSchemaError, cleanupNonNestedPath } from 'vee-validate';
+import {
+  isNotNestedPath,
+  type TypedSchema,
+  type TypedSchemaError,
+  cleanupNonNestedPath,
+} from '@zaalbarxx/vee-validate';
 import { isIndex, isObject, merge, normalizeFormPath } from '../../shared';
 
 /**

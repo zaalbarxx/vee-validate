@@ -21,7 +21,7 @@ The `useForm` function has field typing capabilities if you need it, getting typ
 By unlocking the field type you automatically get more strict information for the various properties/methods exposed by `useForm` like `setErrors` and `setTouched`. There are two ways you can get the advanced typing information for your fields, the first is to provide a generic type to `useForm`.
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 interface LoginForm {
   email: string;
@@ -35,7 +35,7 @@ const { errors } = useForm<LoginForm>();
 Or simply provide initial values to `useForm` and it will automatically pick up the type of `initialValues` and use it for the field types.
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 const { errors, setErrors, setFieldValue } = useForm({
   initialValues: {
@@ -50,7 +50,7 @@ Alternatively, you can use a [typed schema](/guide/composition-api/typed-schema/
 Whichever approach you prefer, you get full type information for your fields for all the functions exposed by `useForm`, here are a few examples.
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 interface LoginForm {
   email: string;
@@ -413,7 +413,7 @@ It accepts a function which runs after validating the form and if all fields are
 </template>
 
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 const { handleSubmit } = useForm();
 
@@ -456,7 +456,7 @@ const onSubmit = handleSubmit((values, actions) => {
 </template>
 
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 const { handleSubmit } = useForm();
 
@@ -492,7 +492,7 @@ This is useful if you plan to handle form submissions using a backend API like L
 </template>
 
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 const { submitForm } = useForm();
 </script>
@@ -583,7 +583,7 @@ Clears error messages, resets the meta state for all fields and reverts their va
 </template>
 
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 const { handleReset } = useForm();
 
@@ -618,7 +618,7 @@ This creates a bindable two-way model value for the specified fields, there are 
 </template>
 
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 const { errors, useFieldModel } = useForm();
 
@@ -658,7 +658,7 @@ The `defineInputBinds` must be called in the `setup` function.
 </template>
 
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 const { errors, defineInputBinds } = useForm();
 
@@ -695,7 +695,7 @@ The `defineComponentBinds` must be called in the `setup` function.
 </template>
 
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import MyTextInput from '@/components/MyTextInput.vue';
 
 const { errors, defineComponentBinds } = useForm();
@@ -727,7 +727,7 @@ The `defineField` must be called in the `setup` function.
 </template>
 
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 const { errors, defineField } = useForm();
 

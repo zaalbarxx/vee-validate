@@ -30,6 +30,6 @@
   "dependencies": {
     "type-fest": "^4.8.3",
     "valibot": "^0.30.0",
-    "vee-validate": "4.12.6"
+    "@zaalbarxx/vee-validate": "4.12.6"
   }
 }

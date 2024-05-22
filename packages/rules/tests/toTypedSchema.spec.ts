@@ -1,4 +1,4 @@
-import { defineRule, useField, useForm } from 'vee-validate';
+import { defineRule, useField, useForm } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '../src/toTypedSchema';
 import { mountWithHoc, flushPromises, setValue } from '../../vee-validate/tests/helpers';
 import required from '../src/required';

@@ -28,7 +28,7 @@ const store = new ReplStore({
 // pre-set import map
 store.setImportMap({
   imports: {
-    'vee-validate': 'https://unpkg.com/vee-validate@latest/dist/vee-validate.esm.js',
+    '@zaalbarxx/vee-validate': 'https://unpkg.com/vee-validate@latest/dist/vee-validate.esm.js',
     '@zaalbarxx/vee-validate-zod': 'https://unpkg.com/@zaalbarxx/vee-validate-zod@latest/dist/vee-validate-zod.esm.js',
     '@zaalbarxx/vee-validate-yup': 'https://unpkg.com/@zaalbarxx/vee-validate-yup@latest/dist/vee-validate-yup.esm.js',
     '@@zaalbarxx/vee-validate-valibot': 'https://unpkg.com/@@zaalbarxx/vee-validate-valibot@latest/dist/vee-validate-valibot.esm.js',

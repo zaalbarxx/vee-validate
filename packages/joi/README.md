@@ -42,7 +42,7 @@ The `@vee-valdiate/joi` package exposes a `toTypedSchema` function that accepts 
 This makes the form values and submitted values typed automatically and caters for both input and output types of that schema.
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { object, string } from 'joi';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-joi';
 
@@ -80,7 +80,7 @@ handleSubmit(submitted => {
 You can also define default values on your joi schema directly and it will be picked up by the form:
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { object, string } from 'joi';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-joi';
 

@@ -33,7 +33,7 @@ The `@vee-valdiate/yup` package exposes a `toTypedSchema` function that accepts 
 This makes the form values and submitted values typed automatically and caters for both input and output types of that schema.
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { object, string } from 'yup';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 
@@ -65,7 +65,7 @@ handleSubmit(submitted => {
 You can also define default values on your schema directly and it will be picked up by the form:
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { object, string } from 'yup';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 
@@ -87,7 +87,7 @@ Your initial values will be using the schema defaults, and also the defaults wil
 You can also define transforms to cast your fields before submission:
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { object, number } from 'yup';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 

@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const { errors, submitForm, defineField } = useForm({

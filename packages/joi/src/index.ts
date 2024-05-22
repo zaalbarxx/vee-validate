@@ -1,4 +1,4 @@
-import type { TypedSchema, TypedSchemaError } from 'vee-validate';
+import type { TypedSchema, TypedSchemaError } from '@zaalbarxx/vee-validate';
 import { AsyncValidationOptions, Schema, ValidationError } from 'joi';
 import { merge, normalizeFormPath } from '../../shared';
 import { PartialDeep } from 'type-fest';

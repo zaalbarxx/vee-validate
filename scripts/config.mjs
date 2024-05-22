@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const formatNameMap = {
-  'vee-validate': 'VeeValidate',
+  '@zaalbarxx/vee-validate': 'VeeValidate',
   rules: 'VeeValidateRules',
   i18n: 'VeeValidateI18n',
   zod: 'VeeValidateZod',
@@ -20,7 +20,7 @@ const formatNameMap = {
 };
 
 const pkgNameMap = {
-  'vee-validate': 'vee-validate',
+  '@zaalbarxx/vee-validate': '@zaalbarxx/vee-validate',
   rules: 'vee-validate-rules',
   i18n: 'vee-validate-i18n',
   zod: 'vee-validate-zod',
@@ -53,7 +53,7 @@ async function createConfig(pkg, format) {
   const config = {
     input: {
       input: slashes(path.resolve(__dirname, `../packages/${pkg}/src/index.ts`)),
-      external: ['vue', isEsm ? '@vue/devtools-api' : undefined, 'zod', 'yup', 'vee-validate', 'valibot', 'joi'].filter(
+      external: ['vue', isEsm ? '@vue/devtools-api' : undefined, 'zod', 'yup', '@zaalbarxx/vee-validate', 'valibot', 'joi'].filter(
         Boolean,
       ),
       plugins: [

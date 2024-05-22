@@ -45,7 +45,7 @@ You can declare forms with the `useForm` function exported from the `vee-validat
 
 ```vue
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 // Creates a form context
 // This component now acts as a form
@@ -202,7 +202,7 @@ yarn add @zaalbarxx/vee-validate-yup
 The package exposes a `toTypedSchema` function that you can use to wrap your yup schemas, this allows vee-validate to infer form input and output types. [More on that here](/guide/composition-api/typed-schema).
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-yup';
 import * as yup from 'yup';
 
@@ -242,7 +242,7 @@ yarn add @zaalbarxx/vee-validate-zod
 Then you can wrap your zod schemas with `toTypedSchema` function which allows vee-validate to infer form input and output types. [More on that here](/guide/composition-api/typed-schema).
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 import { z } from 'zod';
 
@@ -284,7 +284,7 @@ yarn add @@zaalbarxx/vee-validate-valibot
 Then you can wrap your Valibot schemas with `toTypedSchema` function which allows vee-validate to infer form input and output types. [More on that here](/guide/composition-api/typed-schema).
 
 ```ts
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { string, object, email, minLength } from 'valibot';
 import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
 

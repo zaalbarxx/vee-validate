@@ -44,7 +44,7 @@ const schemaProviderResolvers: Record<(typeof schemaProviders)[number], string> 
 
 export default defineNuxtModule<VeeValidateNuxtOptions>({
   meta: {
-    name: 'vee-validate',
+    name: '@zaalbarxx/vee-validate',
     configKey: 'veeValidate',
   },
   defaults: {
@@ -57,7 +57,7 @@ export default defineNuxtModule<VeeValidateNuxtOptions>({
         addImports({
           name: composable,
           as: composable,
-          from: 'vee-validate',
+          from: '@zaalbarxx/vee-validate',
         });
       });
 
@@ -65,7 +65,7 @@ export default defineNuxtModule<VeeValidateNuxtOptions>({
         addComponent({
           name: options.componentNames?.[component] ?? component,
           export: component,
-          filePath: 'vee-validate',
+          filePath: '@zaalbarxx/vee-validate',
         });
       });
     }
@@ -169,9 +169,9 @@ function checkForYup(options: VeeValidateNuxtOptions) {
 
 declare module '@nuxt/schema' {
   interface NuxtConfig {
-    'vee-validate'?: VeeValidateNuxtOptions;
+    '@zaalbarxx/vee-validate'?: VeeValidateNuxtOptions;
   }
   interface NuxtOptions {
-    'vee-validate'?: VeeValidateNuxtOptions;
+    '@zaalbarxx/vee-validate'?: VeeValidateNuxtOptions;
   }
 }

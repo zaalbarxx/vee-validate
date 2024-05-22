@@ -34,7 +34,7 @@ npm install @zaalbarxx/vee-validate-rules
 Use the `defineRule` function from `vee-validate` core library to add rules exported by this library:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 import { required, email, min } from '@zaalbarxx/vee-validate-rules';
 
 defineRule('required', required);
@@ -45,7 +45,7 @@ defineRule('min', min);
 Or you can globally define all the available rules in the `@zaalbarxx/vee-validate-rules` package:
 
 ```js
-import { defineRule } from 'vee-validate';
+import { defineRule } from '@zaalbarxx/vee-validate';
 import * as rules from '@zaalbarxx/vee-validate-rules';
 
 Object.keys(rules).forEach(rule => {

@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import CustomInput from './CustomInput.vue';
 
 const { values, defineField } = useForm();

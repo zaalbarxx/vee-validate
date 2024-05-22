@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { useField, useForm } from 'vee-validate';
+import { useField, useForm } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 const { handleSubmit, errors, defineField } = useForm({

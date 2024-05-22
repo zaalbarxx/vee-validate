@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
 import { email as emailValidator, string, minLength, object } from 'valibot';
 

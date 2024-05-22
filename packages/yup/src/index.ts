@@ -5,7 +5,7 @@ import {
   isNotNestedPath,
   cleanupNonNestedPath,
   TypedSchemaPathDescription,
-} from 'vee-validate';
+} from '@zaalbarxx/vee-validate';
 import { PartialDeep } from 'type-fest';
 import { isIndex, isObject, merge } from '../../shared';
 

@@ -110,7 +110,7 @@ Field arrays are a special type of nested array fields, they are often used to c
 To set up a repeatable block of the form, you can use `useFieldArray` to help you manage the array values and operations. It requires a form context to be present so `useForm` must be called before you use `useFieldArray` either in parent component or in the same component.
 
 ```js
-import { useForm, useFieldArray } from 'vee-validate';
+import { useForm, useFieldArray } from '@zaalbarxx/vee-validate';
 
 useForm();
 
@@ -178,7 +178,7 @@ Path destruction can be annoying when dealing with multi-step forms or tabbed fo
 Note that the priority of this configuration follows the field config first then it fallbacks to the form's config.
 
 ```js
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 
 // keep all values when their fields get unmounted
 const { values } = useForm({
@@ -187,7 +187,7 @@ const { values } = useForm({
 ```
 
 ```js
-import { useField } from 'vee-validate';
+import { useField } from '@zaalbarxx/vee-validate';
 
 // this field value will be removed
 const field = useField('field', undefined, {

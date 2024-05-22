@@ -1,5 +1,10 @@
 import { PartialDeep } from 'type-fest';
-import { cleanupNonNestedPath, isNotNestedPath, type TypedSchema, type TypedSchemaError } from 'vee-validate';
+import {
+  cleanupNonNestedPath,
+  isNotNestedPath,
+  type TypedSchema,
+  type TypedSchemaError,
+} from '@zaalbarxx/vee-validate';
 import {
   Output,
   Input,

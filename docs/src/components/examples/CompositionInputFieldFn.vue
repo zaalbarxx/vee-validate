@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-import { useField } from 'vee-validate';
+import { useField } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 
 function isEmail(value) {

@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { useField } from 'vee-validate';
+import { useField } from '@zaalbarxx/vee-validate';
 
 const props = defineProps({
   name: String,

@@ -90,8 +90,8 @@ async function build(pkg) {
 
 (async function Bundle() {
   const arg = [...process.argv][2];
-  if (arg === 'vee-validate' || !arg) {
-    await build('vee-validate');
+  if (arg === '@zaalbarxx/vee-validate' || !arg) {
+    await build('@zaalbarxx/vee-validate');
   }
 
   if (arg === 'rules' || !arg) {

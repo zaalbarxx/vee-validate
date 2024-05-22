@@ -52,7 +52,7 @@ The `toTypedSchema` function accepts a Zod schema. You can use the converted sch
 </template>
 
 <script setup>
-import { Field, Form, ErrorMessage } from 'vee-validate';
+import { Field, Form, ErrorMessage } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 import * as zod from 'zod';
 
@@ -69,7 +69,7 @@ If you prefer to use the Composition API, then you can pass the converted schema
 </template>
 
 <script setup>
-import { useField } from 'vee-validate';
+import { useField } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 import * as zod from 'zod';
 
@@ -102,7 +102,7 @@ You can pass the converted schema to the `validation-schema` prop present on the
 </template>
 
 <script setup>
-import { Form, Field, ErrorMessage } from 'vee-validate';
+import { Form, Field, ErrorMessage } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 import * as zod from 'zod';
 
@@ -135,7 +135,7 @@ Alternatively, if you prefer to use the composition API, you can pass the conver
 </template>
 
 <script setup>
-import { useField, useForm } from 'vee-validate';
+import { useField, useForm } from '@zaalbarxx/vee-validate';
 import { toTypedSchema } from '@zaalbarxx/vee-validate-zod';
 import * as zod from 'zod';
 

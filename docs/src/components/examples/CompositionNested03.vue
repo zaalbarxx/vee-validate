@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import { useField, useForm } from 'vee-validate';
+import { useField, useForm } from '@zaalbarxx/vee-validate';
 
 const { handleSubmit, defineField } = useForm();
 const onSubmit = handleSubmit(values => {

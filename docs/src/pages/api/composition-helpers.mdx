@@ -31,7 +31,7 @@ All of the following code snippets assume you are using them inside a `setup` fu
 Returns a computed ref to a single field's error message, returns `undefined` if no errors were found for that field or if the field does not exist.
 
 ```js
-import { useFieldError } from 'vee-validate';
+import { useFieldError } from '@zaalbarxx/vee-validate';
 
 const message = useFieldError('fieldName');
 
@@ -41,7 +41,7 @@ message.value; // string or `undefined`
 You can also use it in a child component that has a parent that used `useField`, The `useFieldError` will automatically pick up the field and produce its error messages.
 
 ```js
-import { useFieldError } from 'vee-validate';
+import { useFieldError } from '@zaalbarxx/vee-validate';
 
 // Will look for the first parent that used `useField`
 const message = useFieldError();
@@ -57,7 +57,7 @@ message.value;
 Returns a computed ref to the error bag of the entire form, fields with no errors will not be included in the error bag object.
 
 ```js
-import { useFormErrors } from 'vee-validate';
+import { useFormErrors } from '@zaalbarxx/vee-validate';
 
 const errors = useFormErrors();
 
@@ -73,7 +73,7 @@ message.value; // {}
 Returns a computed ref to the specified field's `dirty` meta state.
 
 ```js
-import { useIsFieldDirty } from 'vee-validate';
+import { useIsFieldDirty } from '@zaalbarxx/vee-validate';
 
 const isDirty = useIsFieldDirty();
 
@@ -83,7 +83,7 @@ isDirty.value; // true or false
 You can also use it in a child component that has a parent that used `useField`, The `useIsFieldDirty` will automatically pick up the field and produce its meta `dirty` value
 
 ```js
-import { useIsFieldDirty } from 'vee-validate';
+import { useIsFieldDirty } from '@zaalbarxx/vee-validate';
 
 // Will look for the first parent that used `useField`
 const isDirty = useIsFieldDirty();
@@ -98,7 +98,7 @@ const isDirty = useIsFieldDirty();
 Returns a computed ref to the context form `dirty` meta state.
 
 ```js
-import { useIsFormDirty } from 'vee-validate';
+import { useIsFormDirty } from '@zaalbarxx/vee-validate';
 
 const isDirty = useIsFormDirty();
 
@@ -114,7 +114,7 @@ isDirty.value; // true or false
 Returns a computed ref to the specified field's `touched` meta state.
 
 ```js
-import { useIsFieldTouched } from 'vee-validate';
+import { useIsFieldTouched } from '@zaalbarxx/vee-validate';
 
 const isTouched = useIsFieldTouched('fieldName');
 
@@ -124,7 +124,7 @@ isTouched.value; // true or false
 You can also use it in a child component that has a parent that used `useField`, The `useIsFieldTouched` will automatically pick up the field and produce its meta `touched` value
 
 ```js
-import { useIsFieldTouched } from 'vee-validate';
+import { useIsFieldTouched } from '@zaalbarxx/vee-validate';
 
 // Will look for the first parent that used `useField`
 const isTouched = useIsFieldTouched();
@@ -139,7 +139,7 @@ const isTouched = useIsFieldTouched();
 Returns a computed ref to the context form `touched` meta state.
 
 ```js
-import { useIsFormTouched } from 'vee-validate';
+import { useIsFormTouched } from '@zaalbarxx/vee-validate';
 
 const isTouched = useIsFormTouched();
 
@@ -155,7 +155,7 @@ isTouched.value; // true or false
 Returns a computed ref to the specified field's `valid` meta state, inner `value` will be `true` if the field has no errors, and `false` if it has any error message.
 
 ```js
-import { useIsFieldValid } from 'vee-validate';
+import { useIsFieldValid } from '@zaalbarxx/vee-validate';
 
 const isValid = useIsFieldValid('fieldName');
 
@@ -165,7 +165,7 @@ isValid.value; // true or false
 You can also use it in a child component that has a parent that used `useField`, The `useIsFieldValid` will automatically pick up the field and produce its meta `valid` value
 
 ```js
-import { useIsFieldValid } from 'vee-validate';
+import { useIsFieldValid } from '@zaalbarxx/vee-validate';
 
 // Will look for the first parent that used `useField`
 const isValid = useIsFieldValid();
@@ -186,7 +186,7 @@ Creating disabled buttons based on the `valid` attribute isn't accurate, because
 Returns a computed ref to the context form `valid` meta state.
 
 ```js
-import { useIsFormValid } from 'vee-validate';
+import { useIsFormValid } from '@zaalbarxx/vee-validate';
 
 const isValid = useIsFormValid();
 
@@ -208,7 +208,7 @@ Creating disabled buttons based on the `valid` attribute isn't accurate, because
 Returns a function that validates the field and returns a validation result object containing any errors, if the `errors` field is empty then it means the field is valid. If a field doesn't not exist it will return an empty `errors` field with a warning.
 
 ```js
-import { useValidateField } from 'vee-validate';
+import { useValidateField } from '@zaalbarxx/vee-validate';
 
 const validate = useValidateField('fieldName');
 
@@ -218,7 +218,7 @@ await validate();
 You can also use it in a child component that has a parent that used `useField`, The `useValidateField` will automatically pick up the field and will return the function that validates it.
 
 ```js
-import { useValidateField } from 'vee-validate';
+import { useValidateField } from '@zaalbarxx/vee-validate';
 
 // Will look for the first parent that used `useField`
 const validate = useValidateField();
@@ -233,7 +233,7 @@ const validate = useValidateField();
 Returns a function that validates the form and returns a `Form`.
 
 ```js
-import { useValidateForm } from 'vee-validate';
+import { useValidateForm } from '@zaalbarxx/vee-validate';
 
 const validate = useValidateForm();
 
@@ -249,7 +249,7 @@ await validate();
 Returns a computed ref to the form's `isSubmitting` state.
 
 ```js
-import { useIsSubmitting } from 'vee-validate';
+import { useIsSubmitting } from '@zaalbarxx/vee-validate';
 
 const isSubmitting = useIsSubmitting();
 
@@ -265,7 +265,7 @@ isSubmitting.value; // true or false
 Returns a computed ref to the form's `isValidating` state.
 
 ```js
-import { useIsValidating } from 'vee-validate';
+import { useIsValidating } from '@zaalbarxx/vee-validate';
 
 const isValidating = useIsValidating();
 
@@ -281,7 +281,7 @@ isValidating.value; // true or false
 Returns a computed ref to the form's `submitCount` state.
 
 ```js
-import { useSubmitCount } from 'vee-validate';
+import { useSubmitCount } from '@zaalbarxx/vee-validate';
 
 const count = useSubmitCount();
 
@@ -297,7 +297,7 @@ count.value;
 Returns a function that you can use to reset the form
 
 ```js
-import { useResetForm } from 'vee-validate';
+import { useResetForm } from '@zaalbarxx/vee-validate';
 
 const resetForm = useResetForm();
 
@@ -313,7 +313,7 @@ resetForm(); // resets the form
 Returns a function that you can use to validate the form and submit if it turns out valid. It does this by accepting a function that should handle the submission logic like sending data to your API. That function will not run unless the form is valid and it receives all the fields current values packed in an object.
 
 ```js
-import { useSubmitForm } from 'vee-validate';
+import { useSubmitForm } from '@zaalbarxx/vee-validate';
 
 const submitForm = useSubmitForm((values, actions) => {
   // Send data to your api ...
@@ -348,7 +348,7 @@ While it is recommended to use actual `form` elements for accessibility, you cou
 Returns a computed ref to the specified field's current value.
 
 ```js
-import { useFieldValue } from 'vee-validate';
+import { useFieldValue } from '@zaalbarxx/vee-validate';
 
 const currentValue = useFieldValue('fieldName');
 
@@ -358,7 +358,7 @@ currentValue.value;
 You can also use it in a child component that has a parent that used `useField`, The `useFieldValue` will automatically pick up the field and produce its current value.
 
 ```js
-import { useFieldValue } from 'vee-validate';
+import { useFieldValue } from '@zaalbarxx/vee-validate';
 
 // Will look for the first parent that used `useField`
 const currentValue = useFieldValue();
@@ -373,7 +373,7 @@ const currentValue = useFieldValue();
 Returns a computed ref to the context form current values.
 
 ```js
-import { useFormValues } from 'vee-validate';
+import { useFormValues } from '@zaalbarxx/vee-validate';
 
 const values = useFormValues();
 

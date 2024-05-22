@@ -38,7 +38,7 @@ type ValidationgenerateMessage = (ctx: FieldContext) => string;
 With this information, you could create message handlers with any kind of 3rd party libraries. To register a message generator use the `configure` function exposed by vee-validate:
 
 ```js
-import { configure } from 'vee-validate';
+import { configure } from '@zaalbarxx/vee-validate';
 
 configure({
   generateMessage: context => {
@@ -78,7 +78,7 @@ npm install @zaalbarxx/vee-validate-i18n
 \import the `localize()` function from `@zaalbarxx/vee-validate-i18n` which returns a message generator function:
 
 ```js
-import { defineRule, configure } from 'vee-validate';
+import { defineRule, configure } from '@zaalbarxx/vee-validate';
 import { required } from '@zaalbarxx/vee-validate-rules';
 import { localize } from '@zaalbarxx/vee-validate-i18n';
 
@@ -98,7 +98,7 @@ configure({
 If you have multiple locales in your application, you can add them like this:
 
 ```js
-import { defineRule, configure } from 'vee-validate';
+import { defineRule, configure } from '@zaalbarxx/vee-validate';
 import { required } from '@zaalbarxx/vee-validate-rules';
 import { localize } from '@zaalbarxx/vee-validate-i18n';
 
@@ -134,7 +134,7 @@ To save you a lot of time translating `@zaalbarxx/vee-validate-rules` messages t
 You can import the needed locale from the `@zaalbarxx/vee-validate-i18n/dist/locale/{localeCode}.json` and they can be passed directly to the localize function. This snippet adds the English and Arabic localized messages for all the rules of `@zaalbarxx/vee-validate-rules` package into the message generator function:
 
 ```js
-import { configure } from 'vee-validate';
+import { configure } from '@zaalbarxx/vee-validate';
 import { localize } from '@zaalbarxx/vee-validate-i18n';
 import en from '@zaalbarxx/vee-validate-i18n/dist/locale/en.json';
 import ar from '@zaalbarxx/vee-validate-i18n/dist/locale/ar.json';
@@ -152,7 +152,7 @@ configure({
 To localize the field name with the `@zaalbarxx/vee-validate-i18n` package, you can add a `names` property to your dictionaries containing the translated names of the fields.
 
 ```js
-import { configure } from 'vee-validate';
+import { configure } from '@zaalbarxx/vee-validate';
 import { localize } from '@zaalbarxx/vee-validate-i18n';
 
 configure({
@@ -209,7 +209,7 @@ You can call `localize` anywhere in your component initialization, ideally befor
 Your messages can be more complex than `required`, for example a `between` rule would need access to the params values to be able to produce a meaningful error message, the `@zaalbarxx/vee-validate-i18n` plugin comes with interpolation support for various placeholders, consider this example:
 
 ```js
-import { defineRule, configure } from 'vee-validate';
+import { defineRule, configure } from '@zaalbarxx/vee-validate';
 import { between } from '@zaalbarxx/vee-validate-rules';
 import { localize } from '@zaalbarxx/vee-validate-i18n';
 

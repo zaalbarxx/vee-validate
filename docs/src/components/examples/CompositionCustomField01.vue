@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { useForm } from 'vee-validate';
+import { useForm } from '@zaalbarxx/vee-validate';
 import * as yup from 'yup';
 import InputText from './InputText.vue';
 
