@@ -82,6 +82,7 @@ export function toTypedSchema<
         };
       } catch {
         if (__DEV__) {
+          // eslint-disable-next-line no-console
           console.warn(`Failed to describe path ${path} on the schema, returning a default description.`);
         }
 

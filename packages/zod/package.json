@@ -1,13 +1,22 @@
 {
   "name": "@zaalbarxx/vee-validate-zod",
-  "version": "4.12.7",
+  "version": "4.15.0",
   "description": "vee-validate integration with zod schema validation",
   "author": "Abdelrahman Awad <logaretm1@gmail.com>",
   "license": "MIT",
-  "module": "dist/vee-validate-zod.esm.js",
-  "unpkg": "dist/vee-validate-zod.js",
-  "main": "dist/vee-validate-zod.js",
+  "module": "dist/vee-validate-zod.mjs",
+  "unpkg": "dist/vee-validate-zod.iife.js",
+  "main": "dist/vee-validate-zod.mjs",
   "types": "dist/vee-validate-zod.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/vee-validate-zod.d.ts",
+      "import": "./dist/vee-validate-zod.mjs",
+      "require": "./dist/vee-validate-zod.cjs"
+    },
+    "./dist/*": "./dist/*"
+  },
   "homepage": "https://vee-validate.logaretm.com/v4/integrations/zod-schema-validation/",
   "repository": {
     "url": "https://github.com/logaretm/vee-validate.git",
@@ -25,11 +34,15 @@
   ],
   "files": [
     "dist/*.js",
-    "dist/*.d.ts"
+    "dist/*.d.ts",
+    "dist/*.cjs",
+    "dist/*.mjs"
   ],
   "dependencies": {
     "type-fest": "^4.8.3",
-    "@zaalbarxx/vee-validate": "4.12.7",
-    "zod": "^3.22.4"
+    "@zaalbarxx/vee-validate": "workspace:*"
+  },
+  "peerDependencies": {
+    "zod": "^3.24.0"
   }
 }

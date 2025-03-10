@@ -1,5 +1,48 @@
 # Change Log
 
+## 4.15.0
+
+## 4.14.7
+
+## 4.14.6
+
+## 4.14.5
+
+## 4.14.4
+
+### Patch Changes
+
+- 193a96f: feat: add setFallbackLocale for i18n closes #4872
+- 4f88d85: fix: specify module type on package.json
+
+## 4.14.3
+
+## 4.14.2
+
+## 4.14.1
+
+### Patch Changes
+
+- c118e86: fix: nested exports for the i18n package closes #4899
+
+## 4.14.0
+
+### Minor Changes
+
+- 404cf57: chore: bump release
+
+### Patch Changes
+
+- 97cebd8: chore: add 'exports' field in package.json for all packages
+
+## 4.13.2
+
+## 4.13.1
+
+## 4.13.0
+
+## 4.12.8
+
 ## 4.12.7
 
 ## 4.12.7

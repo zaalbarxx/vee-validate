@@ -28,10 +28,10 @@ const store = new ReplStore({
 // pre-set import map
 store.setImportMap({
   imports: {
-    '@zaalbarxx/vee-validate': 'https://unpkg.com/vee-validate@latest/dist/vee-validate.esm.js',
-    '@zaalbarxx/vee-validate-zod': 'https://unpkg.com/@zaalbarxx/vee-validate-zod@latest/dist/vee-validate-zod.esm.js',
-    '@zaalbarxx/vee-validate-yup': 'https://unpkg.com/@zaalbarxx/vee-validate-yup@latest/dist/vee-validate-yup.esm.js',
-    '@@zaalbarxx/vee-validate-valibot': 'https://unpkg.com/@@zaalbarxx/vee-validate-valibot@latest/dist/vee-validate-valibot.esm.js',
+    '@zaalbarxx/vee-validate': 'https://unpkg.com/vee-validate@latest/dist/vee-validate.mjs',
+    '@zaalbarxx/vee-validate-zod': 'https://unpkg.com/@zaalbarxx/vee-validate-zod@latest/dist/vee-validate-zod.mjs',
+    '@zaalbarxx/vee-validate-yup': 'https://unpkg.com/@zaalbarxx/vee-validate-yup@latest/dist/vee-validate-yup.mjs',
+    '@zaalbarxx/vee-validate-valibot': 'https://unpkg.com/@zaalbarxx/vee-validate-valibot@latest/dist/vee-validate-valibot.mjs',
     '@zaalbarxx/vee-validate-i18n': 'https://unpkg.com/@zaalbarxx/vee-validate-i18n@latest/dist/vee-validate-i18n.esm.js',
     '@zaalbarxx/vee-validate-rules': 'https://unpkg.com/@zaalbarxx/vee-validate-rules@latest/dist/vee-validate-rules.esm.js',
     'property-expr': 'https://esm-repo.netlify.app/property-expr.esm.js',
@@ -39,7 +39,7 @@ store.setImportMap({
     toposort: 'https://esm-repo.netlify.app/topsort.esm.js',
     yup: 'https://unpkg.com/yup@1.2.0/index.esm.js',
     zod: 'https://unpkg.com/zod@3.21.4/lib/index.mjs',
-    valibot: 'https://unpkg.com/valibot@0.21.0/dist/index.js',
+    valibot: 'https://unpkg.com/valibot@1.0.0-beta.7/dist/index.js',
     '@vue/devtools-api': 'https://unpkg.com/@vue/devtools-api@6.5.0/lib/esm/index.js',
     vue: `https://unpkg.com/vue@${version}/dist/vue.esm-browser.prod.js`,
   },

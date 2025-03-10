@@ -29,9 +29,10 @@ const pkgNameMap = {
   joi: 'vee-validate-joi',
 };
 
-const formatMap = {
-  es: 'esm',
-  umd: '',
+const formatExt = {
+  esm: 'mjs',
+  iife: 'iife.js',
+  cjs: 'cjs',
 };
 
 async function createConfig(pkg, format) {
@@ -41,21 +42,28 @@ async function createConfig(pkg, format) {
 
   // An import assertion in a dynamic import
   const { default: info } = await import(normalizePath(path.resolve(__dirname, `../packages/${pkg}/package.json`)), {
-    assert: {
+    with: {
       type: 'json',
     },
   });
 
   const { version } = info;
 
-  const isEsm = format === 'es';
+  const isEsm = format === 'esm';
 
   const config = {
     input: {
       input: slashes(path.resolve(__dirname, `../packages/${pkg}/src/index.ts`)),
-      external: ['vue', isEsm ? '@vue/devtools-api' : undefined, 'zod', 'yup', '@zaalbarxx/vee-validate', 'valibot', 'joi'].filter(
-        Boolean,
-      ),
+      external: [
+        'vue',
+        isEsm ? '@vue/devtools-api' : undefined,
+        isEsm ? '@vue/devtools-kit' : undefined,
+        'zod',
+        'yup',
+        '@zaalbarxx/vee-validate',
+        'valibot',
+        'joi',
+      ].filter(Boolean),
       plugins: [
         replace({
           preventAssignment: true,
@@ -78,14 +86,15 @@ async function createConfig(pkg, format) {
   * @license MIT
   */`,
       format,
-      name: format === 'umd' ? formatNameMap[pkg] : undefined,
+      name: format === 'iife' ? formatNameMap[pkg] : undefined,
       globals: {
         vue: 'Vue',
+        'vee-validate': 'VeeValidate',
       },
     },
   };
 
-  config.bundleName = `${pkgNameMap[pkg]}${formatMap[format] ? '.' + formatMap[format] : ''}.js`;
+  config.bundleName = `${pkgNameMap[pkg]}.${formatExt[format] ?? 'js'}`;
 
   // if (options.env) {
   //   config.input.plugins.unshift(
@@ -98,4 +107,4 @@ async function createConfig(pkg, format) {
   return config;
 }
 
-export { formatNameMap, pkgNameMap, formatMap, createConfig };
+export { formatNameMap, pkgNameMap, formatExt, createConfig };

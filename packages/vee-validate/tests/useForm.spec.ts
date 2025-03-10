@@ -226,6 +226,7 @@ describe('useForm()', () => {
     const result = await validate();
     expect(result).toEqual({
       valid: false,
+      source: 'fields',
       errors: {
         field1: REQUIRED_MESSAGE,
         field2: REQUIRED_MESSAGE,
@@ -240,6 +241,7 @@ describe('useForm()', () => {
           errors: [REQUIRED_MESSAGE],
         },
       },
+      values: {},
     });
   });
 
@@ -269,6 +271,7 @@ describe('useForm()', () => {
     const result = await pending;
     expect(result).toEqual({
       valid: false,
+      source: 'schema',
       errors: {
         field1: REQUIRED_MESSAGE,
         field2: REQUIRED_MESSAGE,
@@ -1133,6 +1136,32 @@ describe('useForm()', () => {
     expect(form.meta.value.dirty).toBe(false);
   });
 
+  // #4678
+  test('form is marked as dirty when key is removed', async () => {
+    let form!: FormContext<any>;
+    mountWithHoc({
+      setup() {
+        form = useForm({
+          initialValues: {
+            fname: {
+              key1: 'value1',
+              key2: 'value2',
+            },
+          },
+        });
+
+        useField('fname');
+
+        return {};
+      },
+      template: `<div></div>`,
+    });
+
+    form.setFieldValue('fname', { key1: 'value1' });
+    await flushPromises();
+    expect(form.meta.value.dirty).toBe(true);
+  });
+
   describe('error paths can have dot or square bracket for the same field', () => {
     test('path is bracket, mutations are dot', async () => {
       let field!: FieldContext<unknown>;
@@ -1314,6 +1343,37 @@ describe('useForm()', () => {
     form.resetForm({ values: { fname: 'test' } }, { force: true });
     expect(form.values.lname).toBeUndefined();
     expect(form.values.fname).toBe('test');
+  });
+
+  test('reset should be able to set initial values to undefined with force: true', async () => {
+    let form!: FormContext<{ lname: string; fname: string }>;
+
+    mountWithHoc({
+      setup() {
+        form = useForm({
+          initialValues: { fname: '123', lname: '456' },
+        });
+        return {};
+      },
+      template: `<div></div>`,
+    });
+
+    await flushPromises();
+
+    // FAIL
+    form.resetForm({ values: { lname: '789' } }, { force: true });
+    expect(form.meta.value.initialValues?.fname).toBeUndefined(); // This is not undefined. It stayed at value '123'
+    expect(form.meta.value.initialValues?.lname).toBe('789');
+
+    // FAIL
+    form.resetForm({ values: {} }, { force: true });
+    expect(form.meta.value.initialValues?.fname).toBeUndefined();
+    expect(form.meta.value.initialValues?.lname).toBeUndefined();
+
+    // PASS
+    form.resetForm({ values: { lname: undefined, fname: undefined } }, { force: true });
+    expect(form.meta.value.initialValues?.fname).toBeUndefined();
+    expect(form.meta.value.initialValues?.lname).toBeUndefined();
   });
 
   test('reset should not make unspecified values undefined', async () => {

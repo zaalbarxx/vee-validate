@@ -1,5 +1,87 @@
 # Change Log
 
+## 4.15.0
+
+### Patch Changes
+
+- 30281f5: fix: lazy load the devtools dep to force it out of production bundle
+- ec121b1: fix: skip loading devtools if in SSR
+
+## 4.14.7
+
+### Patch Changes
+
+- be994b4: fix: show uncontrolled field info in devtools closes #4914
+
+## 4.14.6
+
+## 4.14.5
+
+### Patch Changes
+
+- e9f8c88: fix: force loading the mjs module when using nuxt
+
+## 4.14.4
+
+### Patch Changes
+
+- f33974c: fix(types): expose field and form slot prop types closes #4900
+- 0991c01: fix: devtools crashing when a field name is defined as getter
+- ecb540a: fix: handle getter field names properly closes #4877
+- 4f88d85: fix: specify module type on package.json
+
+## 4.14.3
+
+### Patch Changes
+
+- 07c27d5: fix: remove rogue console.log
+
+## 4.14.2
+
+### Patch Changes
+
+- f0d4e24: fix: upgrade vue devtools dependency version closes #4863
+
+## 4.14.1
+
+## 4.14.0
+
+### Minor Changes
+
+- 404cf57: chore: bump release
+
+### Patch Changes
+
+- f7a4929: feat: expose useFormContext closes #4490
+- 97cebd8: chore: add 'exports' field in package.json for all packages
+- 421ae69: "fix(types): export component internal types"
+
+## 4.13.2
+
+### Patch Changes
+
+- afbd0e5: feat: support valibot 0.33.0
+
+## 4.13.1
+
+## 4.13.0
+
+### Minor Changes
+
+- 454bc45: fix: force resetForm should not merge values closes #4680 closes #4729
+- 27fe5c8: feat: provide form values as context for yup closes #4753
+
+### Patch Changes
+
+- ae3772a: feat: expose setValue on Field instance and slot props closes #4755
+- fd008c1: feat: added ResetFormOpts arg to useResetForm closes #4707
+
+## 4.12.8
+
+### Patch Changes
+
+- f8bab9c: "fix: field-level validation not working with typed scheams closes #4744"
+
 ## 4.12.7
 
 ### Patch Changes

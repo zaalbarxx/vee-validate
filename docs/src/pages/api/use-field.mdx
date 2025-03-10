@@ -122,6 +122,20 @@ You can also bind it with `v-model` to get two-way value binding with validation
 
 <CodeTitle level="4">
 
+`setValue: Ref<TValue = unknown>`
+
+</CodeTitle>
+
+A method to update the fields value.
+
+```js
+const { setValue } = useField('field', value => !!value);
+
+setValue('hello world') // sets the value and validates the field
+```
+
+<CodeTitle level="4">
+
 `meta: FieldMeta<TValue = unknown>`
 
 </CodeTitle>
@@ -242,7 +256,7 @@ Sets then field errors, you can pass a single message string or an array of erro
 ```js
 const { setErrors } = useField('field', value => !!value);
 
-// Sets a the errors to a single error message
+// Sets the errors to a single error message
 setErrors('field is required');
 
 // sets the errors to multiple error messages
@@ -375,7 +389,6 @@ import { useField } from '@zaalbarxx/vee-validate';
 // a simple `company` field with some options passed into it
 const { value, errorMessage } = useField('company', ..., {
   label: 'Your company',
-  type: 'text',
   initialValue: ''
 });
 </script>

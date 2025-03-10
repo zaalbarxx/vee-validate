@@ -1,7 +1,7 @@
 import { Ref, ref } from 'vue';
 import { FieldMeta, useField, useForm } from '@/vee-validate';
 import { toTypedSchema } from '@/yup';
-import { mountWithHoc, flushPromises, setValue } from '@zaalbarxx/vee-validate/tests/helpers';
+import { mountWithHoc, flushPromises, setValue } from '../../vee-validate/tests/helpers';
 import * as yup from 'yup';
 
 const REQUIRED_MSG = 'field is required';
@@ -340,6 +340,7 @@ test('reports required state on fields', async () => {
               nreq: yup.string(),
             }),
           }),
+          tuple: yup.tuple([yup.string().required(), yup.string()]),
         }),
       );
 
@@ -355,6 +356,8 @@ test('reports required state on fields', async () => {
       const { meta: arrReq } = useField('nested.arr.0.req');
       const { meta: arrNreq } = useField('nested.arr.1.nreq');
       const { meta: nonNested } = useField('[not.nested.req]');
+      const { meta: tupleReq } = useField('tuple.0');
+      const { meta: tupleNreq } = useField('tuple.1');
 
       metaSpy({
         name: name.required,
@@ -365,6 +368,8 @@ test('reports required state on fields', async () => {
         arrReq: arrReq.required,
         arrNreq: arrNreq.required,
         nonNested: nonNested.required,
+        tupleReq: tupleReq.required,
+        tupleNreq: tupleNreq.required,
       });
 
       return {
@@ -385,6 +390,8 @@ test('reports required state on fields', async () => {
       arrReq: true,
       arrNreq: false,
       nonNested: true,
+      tupleReq: true,
+      tupleNreq: false,
     }),
   );
 });
@@ -543,5 +550,96 @@ test('reports required state for field-level schemas without a form context', as
       req: true,
       nreq: false,
     }),
+  );
+});
+
+test('uses transformed value as submitted value', async () => {
+  const onSubmitSpy = vi.fn();
+  let onSubmit!: () => void;
+
+  const wrapper = mountWithHoc({
+    setup() {
+      const { handleSubmit } = useForm<{
+        req: string;
+      }>();
+
+      const { value } = useField('test', toTypedSchema(yup.string().transform(val => `modified: ${val}`)));
+
+      // submit now
+      onSubmit = handleSubmit(onSubmitSpy);
+
+      return {
+        value,
+      };
+    },
+    template: `
+      <div>
+        <input v-model="value" type="text">
+      </div>
+    `,
+  });
+
+  const input = wrapper.$el.querySelector('input');
+
+  setValue(input, '12345678');
+  await flushPromises();
+  onSubmit();
+  await flushPromises();
+  await expect(onSubmitSpy).toHaveBeenCalledTimes(1);
+  await expect(onSubmitSpy).toHaveBeenLastCalledWith(
+    expect.objectContaining({
+      test: 'modified: 12345678',
+    }),
+    expect.anything(),
+  );
+});
+
+test('supports yup.strip', async () => {
+  const onSubmitSpy = vi.fn();
+  let onSubmit!: () => void;
+
+  const wrapper = mountWithHoc({
+    setup() {
+      const { handleSubmit } = useForm({
+        validationSchema: toTypedSchema(
+          yup.object({
+            test: yup.string().strip(),
+            name: yup.string(),
+          }),
+        ),
+      });
+
+      const { value: test } = useField('test');
+      const { value: name } = useField('name');
+
+      // submit now
+      onSubmit = handleSubmit(onSubmitSpy);
+
+      return { test, name };
+    },
+    template: `
+      <div>
+        <input id="test" v-model="test" type="text">
+        <input id="name" v-model="name" type="text">
+      </div>
+    `,
+  });
+
+  await flushPromises();
+
+  const test = wrapper.$el.querySelector('#test');
+  const name = wrapper.$el.querySelector('#name');
+
+  setValue(test, '12345678');
+  setValue(name, '12345678');
+  await flushPromises();
+  onSubmit();
+  await flushPromises();
+  await expect(onSubmitSpy).toHaveBeenCalledTimes(1);
+  await expect(onSubmitSpy).toHaveBeenLastCalledWith(
+    expect.not.objectContaining({
+      test: expect.anything(),
+    }),
+    expect.anything(),
   );
 });

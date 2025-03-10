@@ -1,10 +1,10 @@
-import { h, defineComponent, toRef, resolveDynamicComponent, PropType, VNode, UnwrapRef } from 'vue';
-import { useForm } from './useForm';
-import { SubmissionHandler, InvalidSubmissionHandler, GenericObject, FormMeta, FormContext, FormErrors } from './types';
-import { isEvent, isFormSubmitEvent, normalizeChildren } from './utils';
 import { klona as deepCopy } from 'klona/full';
+import { defineComponent, h, PropType, resolveDynamicComponent, toRef, UnwrapRef, VNode } from 'vue';
+import { FormContext, FormErrors, FormMeta, GenericObject, InvalidSubmissionHandler, SubmissionHandler } from './types';
+import { useForm } from './useForm';
+import { isEvent, isFormSubmitEvent, normalizeChildren } from './utils';
 
-type FormSlotProps = UnwrapRef<
+export type FormSlotProps = UnwrapRef<
   Pick<
     FormContext,
     | 'meta'
@@ -64,7 +64,7 @@ const FormImpl = /** #__PURE__ */ defineComponent({
       default: false,
     },
     onSubmit: {
-      type: Function as PropType<SubmissionHandler>,
+      type: Function as PropType<SubmissionHandler<GenericObject>>,
       default: undefined,
     },
     onInvalidSubmit: {
@@ -74,6 +74,10 @@ const FormImpl = /** #__PURE__ */ defineComponent({
     keepValues: {
       type: Boolean,
       default: false,
+    },
+    name: {
+      type: String,
+      default: 'Form',
     },
   },
   setup(props, ctx) {
@@ -108,6 +112,7 @@ const FormImpl = /** #__PURE__ */ defineComponent({
       initialTouched: props.initialTouched,
       validateOnMount: props.validateOnMount,
       keepValuesOnUnmount: keepValues,
+      name: props.name,
     });
 
     const submitForm = handleSubmit((_, { evt }) => {

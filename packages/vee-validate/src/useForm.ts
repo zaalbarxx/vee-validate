@@ -16,6 +16,7 @@ import {
   toValue,
   MaybeRef,
   MaybeRefOrGetter,
+  inject,
 } from 'vue';
 import { PartialDeep } from 'type-fest';
 import { klona as deepCopy } from 'klona/full';
@@ -26,6 +27,7 @@ import {
   ValidationResult,
   FormState,
   FormValidationResult,
+  FlattenAndMapPathsValidationResult,
   PrivateFormContext,
   FormContext,
   FormErrors,
@@ -67,7 +69,7 @@ import {
   debounceNextTick,
   normalizeEventValue,
 } from './utils';
-import { FormContextKey } from './symbols';
+import { FormContextKey, PublicFormContextKey } from './symbols';
 import { validateTypedSchema, validateObjectSchema } from './validate';
 import { refreshInspector, registerFormWithDevTools } from './devtools';
 import { isCallable, merge, normalizeFormPath } from '../../shared';
@@ -90,6 +92,7 @@ export interface FormOptions<
   initialTouched?: FlattenAndSetPathsType<TValues, boolean>;
   validateOnMount?: boolean;
   keepValuesOnUnmount?: MaybeRef<boolean>;
+  name?: string;
 }
 
 let FORM_COUNTER = 0;
@@ -109,12 +112,13 @@ function resolveInitialValues<TValues extends GenericObject = GenericObject>(opt
 
 export function useForm<
   TValues extends GenericObject = GenericObject,
-  TOutput = TValues,
+  TOutput extends GenericObject = TValues,
   TSchema extends FormSchema<TValues> | TypedSchema<TValues, TOutput> =
     | FormSchema<TValues>
     | TypedSchema<TValues, TOutput>,
 >(opts?: FormOptions<TValues, TOutput, TSchema>): FormContext<TValues, TOutput> {
   const formId = FORM_COUNTER++;
+  const name = opts?.name || 'Form';
 
   // Prevents fields from double resetting their values, which causes checkboxes to toggle their initial value
   let FIELD_ID_COUNTER = 0;
@@ -191,7 +195,7 @@ export function useForm<
   const errorBag = computed<FormErrorBag<TValues>>(() => {
     const pathErrors = pathStates.value.reduce((acc, state) => {
       if (state.errors.length) {
-        acc[state.path as Path<TValues>] = state.errors;
+        acc[toValue(state.path) as Path<TValues>] = state.errors;
       }
 
       return acc;
@@ -218,7 +222,7 @@ export function useForm<
   const fieldNames = computed(() => {
     return pathStates.value.reduce(
       (names, state) => {
-        names[state.path] = { name: state.path || '', label: state.label || '' };
+        names[toValue(state.path)] = { name: toValue(state.path) || '', label: state.label || '' };
 
         return names;
       },
@@ -229,7 +233,7 @@ export function useForm<
   const fieldBailsMap = computed(() => {
     return pathStates.value.reduce(
       (map, state) => {
-        map[state.path] = state.bails ?? true;
+        map[toValue(state.path)] = state.bails ?? true;
 
         return map;
       },
@@ -257,8 +261,8 @@ export function useForm<
 
   const controlledValues = computed(() => {
     return pathStates.value.reduce((acc, state) => {
-      const value = getFromPath(formValues, state.path);
-      setInPath(acc, state.path, value);
+      const value = getFromPath(formValues, toValue(state.path));
+      setInPath(acc, toValue(state.path), value);
 
       return acc;
     }, {} as TValues);
@@ -266,10 +270,10 @@ export function useForm<
 
   const schema = opts?.validationSchema;
 
-  function createPathState<TValue>(
-    path: MaybeRefOrGetter<Path<TValues>>,
-    config?: Partial<PathStateConfig>,
-  ): PathState<TValue> {
+  function createPathState<TPath extends Path<TValues>>(
+    path: MaybeRefOrGetter<TPath>,
+    config?: Partial<PathStateConfig<TOutput[TPath]>>,
+  ): PathState<TValues[TPath], TOutput[TPath]> {
     const initialValue = computed(() => getFromPath(initialValues.value, toValue(path)));
     const pathStateExists = pathStateLookup.value[toValue(path)];
     const isCheckboxOrRadio = config?.type === 'checkbox' || config?.type === 'radio';
@@ -285,7 +289,7 @@ export function useForm<
       pathStateExists.fieldsCount++;
       pathStateExists.__flags.pendingUnmount[id] = false;
 
-      return pathStateExists as PathState<TValue>;
+      return pathStateExists as PathState<TValues[TPath], TOutput[TPath]>;
     }
 
     const currentValue = computed(() => getFromPath(formValues, toValue(path)));
@@ -336,7 +340,7 @@ export function useForm<
       dirty: computed(() => {
         return !isEqual(unref(currentValue), unref(initialValue));
       }),
-    }) as PathState<TValue>;
+    }) as PathState<TValues[TPath], TOutput[TPath]>;
 
     pathStates.value.push(state);
     pathStateLookup.value[pathValue] = state;
@@ -432,11 +436,17 @@ export function useForm<
 
           return validation;
         },
-        { valid: formResult.valid, results: {}, errors: {} } as FormValidationResult<TValues>,
+        {
+          valid: formResult.valid,
+          results: {},
+          errors: {},
+          source: formResult.source,
+        } as FormValidationResult<TValues>,
       );
 
       if (formResult.values) {
         results.values = formResult.values;
+        results.source = formResult.source;
       }
 
       keysOf(results.results).forEach(path => {
@@ -472,7 +482,7 @@ export function useForm<
   }
 
   function findHoistedPath(path: Path<TValues>) {
-    const candidates = pathStates.value.filter(state => path.startsWith(state.path));
+    const candidates = pathStates.value.filter(state => path.startsWith(toValue(state.path)));
 
     return candidates.reduce(
       (bestCandidate, candidate) => {
@@ -510,7 +520,7 @@ export function useForm<
   function makeSubmissionFactory(onlyControlled: boolean) {
     return function submitHandlerFactory<TReturn = unknown>(
       fn?: SubmissionHandler<TValues, TOutput, TReturn>,
-      onValidationError?: InvalidSubmissionHandler<TValues>,
+      onValidationError?: InvalidSubmissionHandler<TValues, TOutput>,
     ) {
       return function submissionHandler(e: unknown) {
         if (e instanceof Event) {
@@ -530,8 +540,12 @@ export function useForm<
             if (result.valid && typeof fn === 'function') {
               const controlled = deepCopy(controlledValues.value);
               let submittedValues = (onlyControlled ? controlled : values) as unknown as TOutput;
+
               if (result.values) {
-                submittedValues = result.values;
+                submittedValues =
+                  result.source === 'schema'
+                    ? (result.values as TOutput)
+                    : Object.assign({}, submittedValues, result.values);
               }
 
               return fn(submittedValues, {
@@ -626,6 +640,7 @@ export function useForm<
   }
 
   const formCtx: PrivateFormContext<TValues, TOutput> = {
+    name,
     formId,
     values: formValues,
     controlledValues,
@@ -817,14 +832,14 @@ export function useForm<
     let newValues = deepCopy(resetState?.values ? resetState.values : originalInitialValues.value);
     newValues = opts?.force ? newValues : merge(originalInitialValues.value, newValues);
     newValues = isTypedSchema(schema) && isCallable(schema.cast) ? schema.cast(newValues) : newValues;
-    setInitialValues(newValues);
+    setInitialValues(newValues, { force: opts?.force });
     mutateAllPathState(state => {
       state.__flags.pendingReset = true;
       state.validated = false;
-      state.touched = resetState?.touched?.[state.path as Path<TValues>] || false;
+      state.touched = resetState?.touched?.[toValue(state.path) as Path<TValues>] || false;
 
-      setFieldValue(state.path as Path<TValues>, getFromPath(newValues, state.path), false);
-      setFieldError(state.path as Path<TValues>, undefined);
+      setFieldValue(toValue(state.path) as Path<TValues>, getFromPath(newValues, toValue(state.path)), false);
+      setFieldError(toValue(state.path) as Path<TValues>, undefined);
     });
 
     opts?.force ? forceSetValues(newValues, false) : setValues(newValues, false);
@@ -856,17 +871,19 @@ export function useForm<
       pathStates.value.map(state => {
         if (!state.validate) {
           return Promise.resolve({
-            key: state.path,
+            key: toValue(state.path),
             valid: true,
             errors: [],
+            value: undefined,
           });
         }
 
-        return state.validate(opts).then((result: ValidationResult) => {
+        return state.validate(opts).then(result => {
           return {
-            key: state.path,
+            key: toValue(state.path),
             valid: result.valid,
             errors: result.errors,
+            value: result.value,
           };
         });
       }),
@@ -874,13 +891,19 @@ export function useForm<
 
     isValidating.value = false;
 
-    const results: Partial<FlattenAndSetPathsType<TValues, ValidationResult>> = {};
+    const results: Partial<FlattenAndMapPathsValidationResult<TValues, TOutput>> = {};
     const errors: Partial<FlattenAndSetPathsType<TValues, string>> = {};
+    const values: Partial<TOutput> = {};
+
     for (const validation of validations) {
       results[validation.key as Path<TValues>] = {
         valid: validation.valid,
         errors: validation.errors,
       };
+
+      if (validation.value) {
+        setInPath(values, validation.key, validation.value);
+      }
 
       if (validation.errors.length) {
         errors[validation.key as Path<TValues>] = validation.errors[0];
@@ -891,10 +914,15 @@ export function useForm<
       valid: validations.every(r => r.valid),
       results,
       errors,
+      values,
+      source: 'fields',
     };
   }
 
-  async function validateField(path: Path<TValues>, opts?: Partial<ValidationOptions>): Promise<ValidationResult> {
+  async function validateField<TPath extends Path<TValues>>(
+    path: TPath,
+    opts?: Partial<ValidationOptions>,
+  ): Promise<ValidationResult<TOutput[TPath]>> {
     const state = findPathState(path);
     if (state && opts?.mode !== 'silent') {
       state.validated = true;
@@ -945,7 +973,7 @@ export function useForm<
   async function _validateSchema(): Promise<FormValidationResult<TValues, TOutput>> {
     const schemaValue = unref(schema);
     if (!schemaValue) {
-      return { valid: true, results: {}, errors: {} };
+      return { valid: true, results: {}, errors: {}, source: 'none' };
     }
 
     isValidating.value = true;
@@ -1035,7 +1063,7 @@ export function useForm<
       pathState.touched = true;
       const validateOnBlur = evalConfig().validateOnBlur ?? getConfig().validateOnBlur;
       if (validateOnBlur) {
-        validateField(pathState.path as Path<TValues>);
+        validateField(toValue(pathState.path) as Path<TValues>);
       }
     }
 
@@ -1043,7 +1071,7 @@ export function useForm<
       const validateOnInput = evalConfig().validateOnInput ?? getConfig().validateOnInput;
       if (validateOnInput) {
         nextTick(() => {
-          validateField(pathState.path as Path<TValues>);
+          validateField(toValue(pathState.path) as Path<TValues>);
         });
       }
     }
@@ -1052,7 +1080,7 @@ export function useForm<
       const validateOnChange = evalConfig().validateOnChange ?? getConfig().validateOnChange;
       if (validateOnChange) {
         nextTick(() => {
-          validateField(pathState.path as Path<TValues>);
+          validateField(toValue(pathState.path) as Path<TValues>);
         });
       }
     }
@@ -1173,12 +1201,16 @@ export function useForm<
     });
   }
 
-  return {
+  const ctx: FormContext<TValues, TOutput> = {
     ...formCtx,
     values: readonly(formValues) as TValues,
     handleReset: () => resetForm(),
     submitForm,
   };
+
+  provide(PublicFormContextKey, ctx);
+
+  return ctx;
 }
 
 /**
@@ -1233,6 +1265,11 @@ function useFormMeta<TValues extends Record<string, unknown>>(
   });
 }
 
+interface SetFormInitialValuesOpts {
+  updateFields?: boolean;
+  force?: boolean;
+}
+
 /**
  * Manages the initial values prop
  */
@@ -1251,11 +1288,16 @@ function useFormInitialValues<TValues extends GenericObject>(
   // these only change when the user explicitly changes the initial values or when the user resets them with new values.
   const originalInitialValues = ref<PartialDeep<TValues>>(deepCopy(values)) as Ref<PartialDeep<TValues>>;
 
-  function setInitialValues(values: PartialDeep<TValues>, updateFields = false) {
-    initialValues.value = merge(deepCopy(initialValues.value) || {}, deepCopy(values));
-    originalInitialValues.value = merge(deepCopy(originalInitialValues.value) || {}, deepCopy(values));
+  function setInitialValues(values: PartialDeep<TValues>, opts?: SetFormInitialValuesOpts) {
+    if (opts?.force) {
+      initialValues.value = deepCopy(values);
+      originalInitialValues.value = deepCopy(values);
+    } else {
+      initialValues.value = merge(deepCopy(initialValues.value) || {}, deepCopy(values));
+      originalInitialValues.value = merge(deepCopy(originalInitialValues.value) || {}, deepCopy(values));
+    }
 
-    if (!updateFields) {
+    if (!opts?.updateFields) {
       return;
     }
 
@@ -1269,8 +1311,8 @@ function useFormInitialValues<TValues extends GenericObject>(
         return;
       }
 
-      const newValue = getFromPath(initialValues.value, state.path);
-      setInPath(formValues, state.path, deepCopy(newValue));
+      const newValue = getFromPath(initialValues.value, toValue(state.path));
+      setInPath(formValues, toValue(state.path), deepCopy(newValue));
     });
   }
 
@@ -1281,7 +1323,10 @@ function useFormInitialValues<TValues extends GenericObject>(
   };
 }
 
-function mergeValidationResults(a: ValidationResult, b?: ValidationResult): ValidationResult {
+function mergeValidationResults<TValue extends GenericObject>(
+  a: ValidationResult<TValue>,
+  b?: ValidationResult<TValue>,
+): ValidationResult<TValue> {
   if (!b) {
     return a;
   }
@@ -1290,4 +1335,11 @@ function mergeValidationResults(a: ValidationResult, b?: ValidationResult): Vali
     valid: a.valid && b.valid,
     errors: [...a.errors, ...b.errors],
   };
+}
+
+export function useFormContext<
+  TValues extends GenericObject = GenericObject,
+  TOutput extends GenericObject = TValues,
+>(): FormContext<TValues, TOutput> {
+  return inject(PublicFormContextKey) as FormContext<TValues, TOutput>;
 }

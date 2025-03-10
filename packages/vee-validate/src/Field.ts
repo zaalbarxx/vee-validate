@@ -42,10 +42,10 @@ export interface ComponentFieldBindingObject<TValue = any> extends SharedBinding
   modelValue?: TValue;
 }
 
-interface FieldSlotProps<TValue = unknown>
+export interface FieldSlotProps<TValue = unknown>
   extends Pick<
     FieldContext,
-    'validate' | 'resetField' | 'handleChange' | 'handleReset' | 'handleBlur' | 'setTouched' | 'setErrors'
+    'validate' | 'resetField' | 'handleChange' | 'handleReset' | 'handleBlur' | 'setTouched' | 'setErrors' | 'setValue'
   > {
   field: FieldBindingObject<TValue>;
   componentField: ComponentFieldBindingObject<TValue>;
@@ -145,6 +145,7 @@ const FieldImpl = /** #__PURE__ */ defineComponent({
       meta,
       checked,
       setErrors,
+      setValue,
     } = useField(name, rules, {
       validateOnMount: props.validateOnMount,
       bails: props.bails,
@@ -242,6 +243,7 @@ const FieldImpl = /** #__PURE__ */ defineComponent({
         handleBlur: sharedProps.value.onBlur,
         setTouched,
         setErrors,
+        setValue,
       };
     }
 
@@ -252,6 +254,7 @@ const FieldImpl = /** #__PURE__ */ defineComponent({
       errorMessage,
       setErrors,
       setTouched,
+      setValue,
       reset: resetField,
       validate: validateField,
       handleChange,
@@ -320,6 +323,7 @@ export const Field = FieldImpl as typeof FieldImpl & {
     setTouched: FieldContext['setTouched'];
     reset: FieldContext['resetField'];
     validate: FieldContext['validate'];
+    setValue: FieldContext['setValue'];
     handleChange: FieldContext['handleChange'];
     $slots: {
       default: (arg: FieldSlotProps<any>) => VNode[];

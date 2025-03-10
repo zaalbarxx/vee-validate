@@ -1,7 +1,7 @@
 import { Ref } from 'vue';
 import { defineRule, configure, useField } from '@/vee-validate';
 import { required, between } from '@/rules';
-import { localize, setLocale } from '@/i18n';
+import { localize, setFallbackLocale, setLocale } from '@/i18n';
 import { mountWithHoc, setValue, flushPromises } from '../../vee-validate/tests/helpers';
 
 defineRule('required', required);
@@ -548,4 +548,325 @@ describe('interpolation preserves placeholders if not found', () => {
     // locale wasn't set.
     expect(error.textContent).toContain('The name field must be between 0 and {max}');
   });
+});
+
+// #4726 - custom interpolation options
+test('custom interpolation options - interpolates object params with short format', async () => {
+  configure({
+    generateMessage: localize(
+      'en',
+      {
+        messages: {
+          between: `The {{field}} field must be between {{min}} and {{max}}`,
+        },
+      },
+      {
+        prefix: '{{',
+        suffix: '}}',
+      },
+    ),
+  });
+
+  const wrapper = mountWithHoc({
+    template: `
+        <div>
+          <Field name="name" value="-1" :validateOnMount="true" :rules="{ between: { min: 1, max: 10 } }" v-slot="{ field, errors }">
+            <input v-bind="field" type="text">
+            <span id="error">{{ errors[0] }}</span>
+          </Field>
+        </div>
+      `,
+  });
+
+  const error = wrapper.$el.querySelector('#error');
+  // flush the pending validation.
+  await flushPromises();
+
+  // locale wasn't set.
+  expect(error.textContent).toContain('The name field must be between 1 and 10');
+});
+
+// #4809
+test('custom interpolation options - interpolates with long suffix/prefix', async () => {
+  configure({
+    generateMessage: localize(
+      'en',
+      {
+        messages: {
+          between: `The <start>field<end> field must be between <start>min<end> and <start>max<end>`,
+        },
+      },
+      {
+        prefix: '<start>',
+        suffix: '<end>',
+      },
+    ),
+  });
+
+  const wrapper = mountWithHoc({
+    template: `
+        <div>
+          <Field name="name" value="-1" :validateOnMount="true" :rules="{ between: { min: 1, max: 10 } }" v-slot="{ field, errors }">
+            <input v-bind="field" type="text">
+            <span id="error">{{ errors[0] }}</span>
+          </Field>
+        </div>
+      `,
+  });
+
+  const error = wrapper.$el.querySelector('#error');
+  // flush the pending validation.
+  await flushPromises();
+
+  // locale wasn't set.
+  expect(error.textContent).toContain('The name field must be between 1 and 10');
+});
+
+test('custom interpolation options - interpolates object params with short format and handlebars style interpolation', async () => {
+  configure({
+    generateMessage: localize(
+      'en',
+      {
+        messages: {
+          between: `The <%field%> field must be between <%min%> and <%max%>`,
+        },
+      },
+      {
+        prefix: '<%',
+        suffix: '%>',
+      },
+    ),
+  });
+
+  const wrapper = mountWithHoc({
+    template: `
+        <div>
+          <Field name="name" value="-1" :validateOnMount="true" :rules="{ between: { min: 1, max: 10 } }" v-slot="{ field, errors }">
+            <input v-bind="field" type="text">
+            <span id="error">{{ errors[0] }}</span>
+          </Field>
+        </div>
+      `,
+  });
+
+  const error = wrapper.$el.querySelector('#error');
+  // flush the pending validation.
+  await flushPromises();
+
+  // locale wasn't set.
+  expect(error.textContent).toContain('The name field must be between 1 and 10');
+});
+
+test('custom interpolation options - interpolates object params with extended format', async () => {
+  configure({
+    generateMessage: localize(
+      'en',
+      {
+        messages: {
+          between: `The {{field}} field must be between 0:{{min}} and 1:{{max}}`,
+        },
+      },
+      {
+        prefix: '{{',
+        suffix: '}}',
+      },
+    ),
+  });
+
+  const wrapper = mountWithHoc({
+    template: `
+        <div>
+          <Field name="name" value="-1" :validateOnMount="true" :rules="{ between: { min: 1, max: 10 } }" v-slot="{ field, errors }">
+            <input v-bind="field" type="text">
+            <span id="error">{{ errors[0] }}</span>
+          </Field>
+        </div>
+      `,
+  });
+
+  const error = wrapper.$el.querySelector('#error');
+  // flush the pending validation.
+  await flushPromises();
+
+  // locale wasn't set.
+  expect(error.textContent).toContain('The name field must be between 1 and 10');
+});
+
+test('custom interpolation options - interpolates array params', async () => {
+  configure({
+    generateMessage: localize(
+      'en',
+      {
+        messages: {
+          between: 'The {{field}} field must be between 0:{{min}} and 1:{{max}}',
+        },
+      },
+      {
+        prefix: '{{',
+        suffix: '}}',
+      },
+    ),
+  });
+
+  const wrapper = mountWithHoc({
+    template: `
+        <div>
+          <Field name="name" value="-1" :validateOnMount="true" :rules="{ between: [1, 10] }" v-slot="{ field, errors }">
+            <input v-bind="field" type="text">
+            <span id="error">{{ errors[0] }}</span>
+          </Field>
+        </div>
+      `,
+  });
+
+  const error = wrapper.$el.querySelector('#error');
+  // flush the pending validation.
+  await flushPromises();
+
+  // locale wasn't set.
+  expect(error.textContent).toContain('The name field must be between 1 and 10');
+});
+
+test('custom interpolation options - interpolates string params', async () => {
+  configure({
+    generateMessage: localize(
+      'en',
+      {
+        messages: {
+          between: 'The {{field}} field must be between 0:{{min}} and 1:{{max}}',
+        },
+      },
+      {
+        prefix: '{{',
+        suffix: '}}',
+      },
+    ),
+  });
+
+  const wrapper = mountWithHoc({
+    template: `
+        <div>
+          <Field name="name" value="-1" :validateOnMount="true" rules="between:1,10" v-slot="{ field, errors }">
+            <input v-bind="field" type="text">
+            <span id="error">{{ errors[0] }}</span>
+          </Field>
+        </div>
+      `,
+  });
+
+  const error = wrapper.$el.querySelector('#error');
+  // flush the pending validation.
+  await flushPromises();
+
+  // locale wasn't set.
+  expect(error.textContent).toContain('The name field must be between 1 and 10');
+});
+
+describe('interpolation preserves placeholders if not found', () => {
+  test('custom interpolation options - array format', async () => {
+    configure({
+      generateMessage: localize(
+        'en',
+        {
+          messages: {
+            between: 'The {{field}} field must be between 0:{{min}} and 1:{{max}}',
+          },
+        },
+        {
+          prefix: '{{',
+          suffix: '}}',
+        },
+      ),
+    });
+
+    const wrapper = mountWithHoc({
+      template: `
+        <div>
+          <Field name="name" value="-1" :validateOnMount="true" :rules="{ between: [1] }" v-slot="{ field, errors }">
+            <input v-bind="field" type="text">
+            <span id="error">{{ errors[0] }}</span>
+          </Field>
+        </div>
+      `,
+    });
+
+    const error = wrapper.$el.querySelector('#error');
+    // flush the pending validation.
+    await flushPromises();
+
+    // locale wasn't set.
+    expect(error.textContent).toContain('The name field must be between 1 and 1:{{max}}');
+  });
+
+  test('custom interpolation options - object format', async () => {
+    configure({
+      generateMessage: localize(
+        'en',
+        {
+          messages: {
+            between: 'The {{field}} field must be between 0:{{min}} and 1:{{max}}',
+          },
+        },
+        {
+          prefix: '{{',
+          suffix: '}}',
+        },
+      ),
+    });
+
+    const wrapper = mountWithHoc({
+      template: `
+        <div>
+          <Field name="name" value="-1" :validateOnMount="true" :rules="{ between: { min: 0 } }" v-slot="{ field, errors }">
+            <input v-bind="field" type="text">
+            <span id="error">{{ errors[0] }}</span>
+          </Field>
+        </div>
+      `,
+    });
+
+    const error = wrapper.$el.querySelector('#error');
+    // flush the pending validation.
+    await flushPromises();
+
+    // locale wasn't set.
+    expect(error.textContent).toContain('The name field must be between 0 and {{max}}');
+  });
+});
+
+test('can define fallback locale', async () => {
+  configure({
+    generateMessage: localize({
+      en: {
+        messages: {
+          test: `Field is required`,
+        },
+      },
+      ar: {
+        messages: {},
+      },
+    }),
+  });
+
+  setLocale('ar');
+  setFallbackLocale('en');
+  defineRule('test', () => false);
+
+  const wrapper = mountWithHoc({
+    template: `
+      <div>
+        <Field name="name" rules="test" v-slot="{ field, errors }">
+          <input v-bind="field" type="text">
+          <span id="error">{{ errors[0] }}</span>
+        </Field>
+      </div>
+    `,
+  });
+
+  const error = wrapper.$el.querySelector('#error');
+  const input = wrapper.$el.querySelector('input');
+  setValue(input, '12');
+  await flushPromises();
+
+  expect(error.textContent).toContain('Field is required');
 });

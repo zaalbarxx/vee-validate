@@ -6,24 +6,27 @@ import {
   ValidationResult,
   GenericValidateFunction,
   TypedSchema,
+  FlattenAndMapPathsValidationResult,
   FormValidationResult,
   RawFormSchema,
   YupSchema,
+  GenericObject,
   TypedSchemaError,
   Path,
+  TypedSchemaContext,
 } from './types';
 import { isCallable, FieldValidationMetaInfo } from '../../shared';
 
 /**
  * Used internally
  */
-interface FieldValidationContext<TValue = unknown> {
+interface FieldValidationContext<TInput = unknown, TOutput = TInput> {
   name: string;
   label?: string;
   rules:
-    | GenericValidateFunction<TValue>
-    | GenericValidateFunction<TValue>[]
-    | TypedSchema<TValue>
+    | GenericValidateFunction<TInput>
+    | GenericValidateFunction<TInput>[]
+    | TypedSchema<TInput, TOutput>
     | string
     | Record<string, unknown>;
   bails: boolean;
@@ -40,18 +43,18 @@ interface ValidationOptions {
 /**
  * Validates a value against the rules.
  */
-export async function validate<TValue = unknown>(
-  value: TValue,
+export async function validate<TInput, TOutput>(
+  value: TInput,
   rules:
     | string
     | Record<string, unknown | unknown[]>
-    | GenericValidateFunction<TValue>
-    | GenericValidateFunction<TValue>[]
-    | TypedSchema<TValue>,
+    | GenericValidateFunction<TInput>
+    | GenericValidateFunction<TInput>[]
+    | TypedSchema<TInput, TOutput>,
   options: ValidationOptions = {},
-): Promise<ValidationResult> {
+): Promise<ValidationResult<TOutput>> {
   const shouldBail = options?.bails;
-  const field: FieldValidationContext<TValue> = {
+  const field: FieldValidationContext<TInput, TOutput> = {
     name: options?.name || '{field}',
     rules,
     label: options?.label,
@@ -60,24 +63,27 @@ export async function validate<TValue = unknown>(
   };
 
   const result = await _validate(field, value);
-  const errors = result.errors;
 
   return {
-    errors,
-    valid: !errors.length,
+    ...result,
+    valid: !result.errors.length,
   };
 }
 
 /**
  * Starts the validation process.
  */
-async function _validate<TValue = unknown>(field: FieldValidationContext<TValue>, value: TValue) {
-  if (isTypedSchema(field.rules) || isYupValidator(field.rules)) {
-    return validateFieldWithTypedSchema(value, field.rules);
+async function _validate<TInput = unknown, TOutput = TInput>(
+  field: FieldValidationContext<TInput, TOutput>,
+  value: TInput,
+) {
+  const rules = field.rules;
+  if (isTypedSchema(rules) || isYupValidator(rules)) {
+    return validateFieldWithTypedSchema(value, { ...field, rules });
   }
 
   // if a generic function or chain of generic functions
-  if (isCallable(field.rules) || Array.isArray(field.rules)) {
+  if (isCallable(rules) || Array.isArray(rules)) {
     const ctx = {
       field: field.label || field.name,
       name: field.name,
@@ -87,7 +93,7 @@ async function _validate<TValue = unknown>(field: FieldValidationContext<TValue>
     };
 
     // Normalize the pipeline
-    const pipeline = Array.isArray(field.rules) ? field.rules : [field.rules];
+    const pipeline = Array.isArray(rules) ? rules : [rules];
     const length = pipeline.length;
     const errors: ReturnType<typeof _generateFieldError>[] = [];
 
@@ -120,7 +126,7 @@ async function _validate<TValue = unknown>(field: FieldValidationContext<TValue>
 
   const normalizedContext = {
     ...field,
-    rules: normalizeRules(field.rules),
+    rules: normalizeRules(rules),
   };
   const errors: ReturnType<typeof _generateFieldError>[] = [];
   const rulesKeys = Object.keys(normalizedContext.rules);
@@ -161,9 +167,9 @@ function isYupError(err: unknown): err is YupError {
 function yupToTypedSchema(yupSchema: YupSchema): TypedSchema {
   const schema: TypedSchema = {
     __type: 'VVTypedSchema',
-    async parse(values: any) {
+    async parse(values: any, context?: TypedSchemaContext) {
       try {
-        const output = await yupSchema.validate(values, { abortEarly: false });
+        const output = await yupSchema.validate(values, { abortEarly: false, context: context?.formData || {} });
 
         return {
           output,
@@ -205,9 +211,12 @@ function yupToTypedSchema(yupSchema: YupSchema): TypedSchema {
 /**
  * Handles yup validation
  */
-async function validateFieldWithTypedSchema(value: unknown, schema: TypedSchema | YupSchema) {
-  const typedSchema = isTypedSchema(schema) ? schema : yupToTypedSchema(schema);
-  const result = await typedSchema.parse(value);
+async function validateFieldWithTypedSchema(
+  value: unknown,
+  context: FieldValidationContext<any> & { rules: TypedSchema | YupSchema },
+) {
+  const typedSchema = isTypedSchema(context.rules) ? context.rules : yupToTypedSchema(context.rules);
+  const result = await typedSchema.parse(value, { formData: context.formData });
 
   const messages: string[] = [];
   for (const error of result.errors) {
@@ -217,6 +226,7 @@ async function validateFieldWithTypedSchema(value: unknown, schema: TypedSchema 
   }
 
   return {
+    value: result.value,
     errors: messages,
   };
 }
@@ -295,14 +305,14 @@ function fillTargetValues(params: unknown[] | Record<string, unknown>, crossTabl
   );
 }
 
-export async function validateTypedSchema<TValues, TOutput = TValues>(
+export async function validateTypedSchema<TValues extends GenericObject, TOutput extends GenericObject = TValues>(
   schema: TypedSchema<TValues> | YupSchema<TValues>,
   values: TValues,
 ): Promise<FormValidationResult<TValues, TOutput>> {
   const typedSchema = isTypedSchema(schema) ? schema : yupToTypedSchema(schema);
-  const validationResult = await typedSchema.parse(deepCopy(values));
+  const validationResult = await typedSchema.parse(deepCopy(values), { formData: deepCopy(values) });
 
-  const results: Partial<Record<Path<TValues>, ValidationResult>> = {};
+  const results: Partial<FlattenAndMapPathsValidationResult<TValues, TOutput>> = {};
   const errors: Partial<Record<Path<TValues>, string>> = {};
   for (const error of validationResult.errors) {
     const messages = error.errors;
@@ -322,12 +332,13 @@ export async function validateTypedSchema<TValues, TOutput = TValues>(
     results,
     errors,
     values: validationResult.value,
+    source: 'schema',
   };
 }
 
-export async function validateObjectSchema<TValues, TOutput>(
+export async function validateObjectSchema<TValues extends GenericObject, TOutput extends GenericObject>(
   schema: RawFormSchema<TValues>,
-  values: TValues,
+  values: TValues | undefined,
   opts?: Partial<{ names: Record<string, { name: string; label: string }>; bailsMap: Record<string, boolean> }>,
 ): Promise<FormValidationResult<TValues, TOutput>> {
   const paths = keysOf(schema) as Path<TValues>[];
@@ -349,7 +360,7 @@ export async function validateObjectSchema<TValues, TOutput>(
   let isAllValid = true;
   const validationResults = await Promise.all(validations);
 
-  const results: Partial<Record<Path<TValues>, ValidationResult>> = {};
+  const results: Partial<FlattenAndMapPathsValidationResult<TValues, TOutput>> = {};
   const errors: Partial<Record<Path<TValues>, string>> = {};
   for (const result of validationResults) {
     results[result.path] = {
@@ -367,5 +378,6 @@ export async function validateObjectSchema<TValues, TOutput>(
     valid: isAllValid,
     results,
     errors,
+    source: 'schema',
   };
 }

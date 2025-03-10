@@ -1,5 +1,112 @@
 # Change Log
 
+## 4.15.0
+
+### Patch Changes
+
+- Updated dependencies [30281f5]
+- Updated dependencies [ec121b1]
+  - vee-validate@4.15.0
+
+## 4.14.7
+
+### Patch Changes
+
+- Updated dependencies [be994b4]
+  - vee-validate@4.14.7
+
+## 4.14.6
+
+### Patch Changes
+
+- vee-validate@4.14.6
+
+## 4.14.5
+
+### Patch Changes
+
+- Updated dependencies [e9f8c88]
+  - vee-validate@4.14.5
+
+## 4.14.4
+
+### Patch Changes
+
+- 4f88d85: fix: specify module type on package.json
+- Updated dependencies [f33974c]
+- Updated dependencies [0991c01]
+- Updated dependencies [ecb540a]
+- Updated dependencies [4f88d85]
+  - vee-validate@4.14.4
+
+## 4.14.3
+
+### Patch Changes
+
+- Updated dependencies [07c27d5]
+  - vee-validate@4.14.3
+
+## 4.14.2
+
+### Patch Changes
+
+- Updated dependencies [f0d4e24]
+  - vee-validate@4.14.2
+
+## 4.14.1
+
+### Patch Changes
+
+- vee-validate@4.14.1
+
+## 4.14.0
+
+### Minor Changes
+
+- 404cf57: chore: bump release
+
+### Patch Changes
+
+- a8524a1: fix: incorrect shared type import in rules
+- 97cebd8: chore: add 'exports' field in package.json for all packages
+- e69e0df: fix: updated email regex closes #4801
+- Updated dependencies [f7a4929]
+- Updated dependencies [97cebd8]
+- Updated dependencies [404cf57]
+- Updated dependencies [421ae69]
+  - vee-validate@4.14.0
+
+## 4.13.2
+
+### Patch Changes
+
+- Updated dependencies [afbd0e5]
+  - vee-validate@4.13.2
+
+## 4.13.1
+
+### Patch Changes
+
+- vee-validate@4.13.1
+
+## 4.13.0
+
+### Patch Changes
+
+- fdb2d47: fix: offer an all export with simplified typings closes #4766
+- Updated dependencies [454bc45]
+- Updated dependencies [ae3772a]
+- Updated dependencies [27fe5c8]
+- Updated dependencies [fd008c1]
+  - vee-validate@4.13.0
+
+## 4.12.8
+
+### Patch Changes
+
+- Updated dependencies [f8bab9c]
+  - vee-validate@4.12.8
+
 ## 4.12.7
 
 ### Patch Changes

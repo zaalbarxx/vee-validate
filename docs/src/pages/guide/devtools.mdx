@@ -3,7 +3,10 @@ layout: ../../layouts/PageLayout.astro
 title: Devtools Plugin
 description: Using the vee-validate Vue.js devtools plugin
 order: 7
-next: guide/testing
+next:
+  path: guide/testing
+  title: Testing
+  description: Testing form validation in your apps
 new: true
 ---
 
@@ -36,6 +39,10 @@ The devtools plugin adds a new "vee-validate" inspector that allows you to view 
 To use the vee-validate inspector, switch from the `components` inspector to the `vee-validate` inspector:
 
 <video src="/v4/video/inspector.mp4" autoplay muted loop loading="lazy"></video>
+
+<DocTip type="tip" title="Form Name">
+When working with multiple forms, you can distinguish between them by their name. The name of the form can be set using the `name` prop on the `<Form />` component or the `useForm` composable.
+</DocTip>
 
 ## Disabling the plugin
 

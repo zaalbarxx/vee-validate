@@ -3,7 +3,10 @@ layout: ../../layouts/PageLayout.astro
 title: Localization (i18n)
 description: Localization support with the first party module and other providers
 order: 6
-next: guide/composition-api
+next:
+  path: guide/devtools
+  title: Devtools Plugin
+  description: Using the vee-validate Vue.js devtools plugin
 ---
 
 import LiveExample from '@/components/LiveExample.vue';
@@ -75,7 +78,7 @@ yarn add @zaalbarxx/vee-validate-i18n
 npm install @zaalbarxx/vee-validate-i18n
 ```
 
-\import the `localize()` function from `@zaalbarxx/vee-validate-i18n` which returns a message generator function:
+Import the `localize()` function from `@zaalbarxx/vee-validate-i18n` which returns a message generator function:
 
 ```js
 import { defineRule, configure } from '@zaalbarxx/vee-validate';
@@ -233,6 +236,38 @@ You can also interpolate the other fields in the form by using their names as pl
 Here is an example that show cases interpolation for different cases:
 
 <LiveExample client:visible id="vee-validate-v4-i18n-interpolation" />
+
+#### Custom Interpolation Prefix and Suffix
+
+You also have the ability to customize the `prefix` and `suffix` of the interpolated values, by default they are `{` and `}` respectively.
+
+Configure them by passing a third parameter of `InterpolateOptions` to the `localize` function:
+
+```js
+import { defineRule, configure } from 'vee-validate';
+import { between } from '@vee-validate/rules';
+import { localize } from '@vee-validate/i18n';
+
+// Define the rule globally
+defineRule('between', between);
+
+configure({
+  // Generates an English message locale generator
+  generateMessage: localize(
+    'en',
+    {
+      messages: {
+        // use double `{{` and `}}` i18next-like curly braces for the interpolated values, instead of the default `{` and `}`
+        between: `The {{field}} field must be between 0:{{min}} and 1:{{max}}`,
+      },
+    },
+    {
+      prefix: '{{',
+      suffix: '}}',
+    },
+  ),
+});
+```
 
 ### Loading Locale From CDN
 

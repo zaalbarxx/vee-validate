@@ -1,7 +1,6 @@
 import { computed, isRef, reactive, ref, Ref, unref, watch, MaybeRef, MaybeRefOrGetter, toValue } from 'vue';
-import { FieldMeta, FieldState, FieldValidator, InputType, PrivateFormContext, PathState } from './types';
+import { FieldMeta, FieldState, FieldValidator, InputType, PrivateFormContext, PathState, TypedSchema } from './types';
 import { getFromPath, isEqual, normalizeErrorItem } from './utils';
-import { TypedSchema } from '../dist/vee-validate';
 
 export interface StateSetterInit<TValue = unknown> extends FieldState<TValue> {
   initialValue: TValue;
@@ -18,14 +17,14 @@ export interface FieldStateComposable<TValue = unknown> {
   setState(state: Partial<StateSetterInit<TValue>>): void;
 }
 
-export interface StateInit<TValue = unknown> {
-  modelValue: MaybeRef<TValue>;
+export interface StateInit<TInput = unknown, TOutput = TInput> {
+  modelValue: MaybeRef<TInput>;
   form?: PrivateFormContext;
   bails: boolean;
   label?: MaybeRefOrGetter<string | undefined>;
   type?: InputType;
-  validate?: FieldValidator;
-  schema?: MaybeRefOrGetter<TypedSchema<TValue> | undefined>;
+  validate?: FieldValidator<TOutput>;
+  schema?: MaybeRefOrGetter<TypedSchema<TInput> | undefined>;
 }
 
 let ID_COUNTER = 0;

@@ -69,7 +69,7 @@ But then you will find another problem when using `handleSubmit`:
 
 ```ts
 handleSubmit(values => {
-  // Must be checked, this means submmited values are innacurate
+  // Must be checked, this means submmited values are inaccurate
   if (values.email) {
     values.email.endsWith('@gmail.com');
   }
@@ -282,15 +282,15 @@ handleSubmit(submitted => {
 
 [Valibot](https://valibot.dev/) is a schema library with bundle size, type safety and developer experience in mind. It is a great alternative to Yup and Zod if bundle size is a concern.
 
-You can use valibot as a typed schema with the `@@zaalbarxx/vee-validate-valibot` package:
+You can use valibot as a typed schema with the `@zaalbarxx/vee-validate-valibot` package:
 
 ```sh
 # npm
-npm install @@zaalbarxx/vee-validate-valibot
+npm install @zaalbarxx/vee-validate-valibot
 # yarn
-yarn add @@zaalbarxx/vee-validate-valibot
+yarn add @zaalbarxx/vee-validate-valibot
 # pnpm
-pnpm add @@zaalbarxx/vee-validate-valibot
+pnpm add @zaalbarxx/vee-validate-valibot
 ```
 
 The `@vee-valdiate/valibot` package exposes a `toTypedSchema` function that accepts any valibot schema. Which then you can pass along to `validationSchema` option on `useForm`.
@@ -299,15 +299,15 @@ This makes the form values and submitted values typed automatically and caters f
 
 ```ts
 import { useForm } from '@zaalbarxx/vee-validate';
-import { object, string, minLength } from 'valibot';
-import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
+import * as v from 'valibot';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-valibot';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
-    object({
-      email: string([minLength(1, 'required')]),
-      password: string([minLength(1, 'required')]),
-      name: string(),
+    v.object({
+      name: v.pipe(v.string()),
+      email: v.pipe(v.string() v.nonEmpty('required')),
+      password: v.pipe(v.string(), v.minLength(6, 'Must be at least 6 characters')),
     }),
   ),
 });
@@ -331,15 +331,15 @@ You can also define default values on your schema directly and it will be picked
 
 ```ts
 import { useForm } from '@zaalbarxx/vee-validate';
-import { object, string, optional, minLength } from 'valibot';
-import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
+import * as v from 'valibot';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-valibot';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
-    object({
-      email: optional(string([minLength(1, 'required')]), 'something@email.com'),
-      password: optional(string([minLength(1, 'required')]), ''),
-      name: optional(string(), ''),
+    v.object({
+      email: v.optional(v.pipe(string(), v.nonEmpty('required')), 'something@email.com'),
+      password: v.optional(v.pipe(v.string(), v.nonEmpty('required')), ''),
+      name: v.optional(v.string(), ''),
     }),
   ),
 });
@@ -353,13 +353,16 @@ You can also define transforms to cast your fields before submission:
 
 ```ts
 import { useForm } from '@zaalbarxx/vee-validate';
-import { object, number, coerce, any } from 'valibot';
-import { toTypedSchema } from '@@zaalbarxx/vee-validate-valibot';
+import * as v from 'valibot';
+import { toTypedSchema } from '@zaalbarxx/vee-validate-valibot';
 
 const { values, handleSubmit } = useForm({
   validationSchema: toTypedSchema(
     object({
-      age: coerce(any(), arg => Number(arg)),
+      age: v.pipe(
+        v.unknown(),
+        v.transform(v => Number(v)),
+      ),
     }),
   ),
 });
